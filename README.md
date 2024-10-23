@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/dennisegonzalez/ksu-rec-center-app">
-    <img src="images/RecLogo.png" width="80" height="80"/>
+    <img src="images/RecLogo.png" width="180" height="180"/>
   </a>
 
   <h3 align="center">KSU Rec Center Application</h3>
