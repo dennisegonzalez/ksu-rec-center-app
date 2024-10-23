@@ -100,47 +100,61 @@ The app follows a client-server architecture where the mobile app serves as the 
 
 # Features
 
-User Management:
+### User Management:
 
-	•	Account Creation: Users can sign up using their Owl Express credentials.
-	•	User Authentication: Secure login with KSU’s DUO two-factor authentication.
-	•	Profile Management: Users can edit their personal profiles and track activity.
+| Name                              | Description                                                   |  
+| --------------------------------- | ------------------------------------------------------------- | 
+| Account Creation                  | Users can sign up using their Owl Express credentials.        | 
+| User Authentication               | Secure login with KSU’s DUO two-factor authentication.        |
+| Profile Management                | Users can edit their personal profiles and track activity.    |
 
-Event Management:
+### Event Management:
 
-	•	Event Listings: View upcoming events with details like date, time, and location.
-	•	Event Registration: Register for events, receive notifications, and manage registrations.
+| Name                              | Description                                                                  |  
+| --------------------------------- | ---------------------------------------------------------------------------- | 
+| Event Listings                    | View upcoming events with details like date, time, and location.             | 
+| Event Registration                | Register for events, receive notifications, and manage registrations.        |
 
-Facility Information:
+### Facility Information:
 
-	•	Operating Hours: View hours for KSU’s Marietta and Kennesaw campus Rec Centers.
-	•	Maps: Interactive maps with descriptions of Rec Center facilities and features.
+| Name                              | Description                                                                  |  
+| --------------------------------- | ---------------------------------------------------------------------------- | 
+| Operating Hours                   | View hours for KSU’s Marietta and Kennesaw campus Rec Centers.               | 
+| Maps                              | Interactive maps with descriptions of Rec Center facilities and features.    |
 
-Feedback and Support:
+### Feedback and Support:
 
-	•	Comment Card: Submit feedback with a thumbs-up/thumbs-down rating and comments.
+| Name                              | Description                                                                  |  
+| --------------------------------- | ---------------------------------------------------------------------------- | 
+| Comment Card                      | Submit feedback with a thumbs-up/thumbs-down rating and comments.            |
 
-User Notifications:
+### User Notifications:
 
-	•	In-App Notifications: Receive updates on events, classes, and important alerts.
+| Name                              | Description                                                                  |  
+| --------------------------------- | ---------------------------------------------------------------------------- | 
+| In-App Notifications              | Receive updates on events, classes, and important alerts.                    |
 
-Admin and Staff Roles:
+### Admin and Staff Roles:
 
-	•	General Users: Can manage profiles, access facility information, register for events, and submit forms.
-	•	Admins, Event Coordinators, and Facility Managers: Manage content, update facility info, and monitor user feedback and activity.
-
+| Name                              | Description                                                                                                  |  
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------ | 
+| General Users                                       | Can manage profiles, access facility information, register for events, and submit forms.   | 
+| Admins, Event Coordinators, and Facility Managers   | Manage content, update facility info, and monitor user feedback and activity.              |
 
 
 
 # Tech Stack
 
-	•	Frontend: React Native (cross-platform development for iOS and Android).
-	•	Backend: Node.js, Express, Firebase for authentication, KSU API for data management.
-	•	Database: MongoDB for secure storage of user profiles, events, and facility details.
-	•	APIs: Integration with third-party services for maps and notifications (e.g., Google Maps API).
-	•	Version Control: GitHub for code collaboration and version management.
-
-
+### Frontend [![React][React.js]][React-url]  
+ React Native (cross-platform development for iOS and Android).
+### Backend 
+Node.js, Express, Firebase for authentication, KSU API for data management.
+### Database
+MongoDB for secure storage of user profiles, events, and facility details.
+### APIs
+Integration with third-party services for maps and notifications (e.g., Google Maps API).
+### Version Control
+GitHub for code collaboration and version management.
 
 
 # Installation
@@ -221,3 +235,37 @@ For any questions, reach out to the project team:
 	•	GitHub Repository: GitHub Link
 
 This version incorporates the technical and functional details outlined in the provided specifications, focusing on the architecture, features, and key components. You can further tailor it with specific GitHub links and developer details.
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com 
+[Github.com]: 
