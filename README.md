@@ -1,43 +1,88 @@
-# ksu-rec-center-app
-Kennesaw State University Rec Center Mobile App Redesign
+<br />
+<div align="center">
+  <a href="https://github.com/dennisegonzalez/ksu-rec-center-app">
+    <img src="images/RecLogo.png" width="80" height="80"/>
+  </a>
 
-Table of Contents
+  <h3 align="center">KSU Rec Center Application</h3>
 
-	•	Introduction
-	•	System Overview
-	•	Features
-	•	Tech Stack
-	•	Installation
-	•	Usage
-	•	Contributing
-	•	License
-	•	Contact
+  <p align="center">
+    A student developed redesign of KSU's recreational center application
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
 
-Introduction
 
-Purpose
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-this-project">About This Project</a>
+      <ul>
+        <li><a href="#purpose">Purpose</a></li>
+	<li><a href="#scope">Scope</a></li>
+	<li><a href="#audience">Audience</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#system-overview">System Overview</a>
+      <ul>
+        <li><a href="#system-purpose">System Purpose</a></li>
+        <li><a href="#architecture-overview">Architecture Overview</a></li>
+	<li><a href="#key-components">Key Components</a></li>
+      </ul>
+    </li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#tech-stack">Tech Stack</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributors">Contributors</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+
+
+
+# About This Project
+
+
+### Purpose
 
 This project focuses on redesigning the KSU Rec Center app to enhance user experience and maximize accessibility. The current app lacks modern design and usability, leading to a decline in usage. Our redesigned app aims to address these issues with a clean, user-friendly interface that simplifies navigation and interaction.
 
-Scope
+### Scope
 
 The redesigned app will include features such as personal profiles, event registrations, facility information (maps and hours), and form submissions. It will be developed using modern technologies like React Native, with a secure backend to manage data and integrate APIs for real-time scheduling and notifications.
 
-Audience
+### Audience
 
 The app is designed for KSU students, faculty, and staff who frequently use the Rec Center facilities and seek a seamless way to interact with the services offered by the center.
 
-System Overview
 
-System Purpose
+
+
+# System Overview
+
+### System Purpose
 
 The goal of the new KSU Rec Center app is to provide a modern platform for users to easily access and engage with Rec Center services.
 
-Architecture Overview
+### Architecture Overview
 
 The app follows a client-server architecture where the mobile app serves as the client and interacts with a secure backend server that manages data and business logic.
 
-Key Components
+### Key Components
 
 	•	Client (Mobile App):
 	•	Developed using React Native for cross-platform functionality (iOS/Android).
@@ -50,7 +95,10 @@ Key Components
 	•	Database:
 	•	Stores user data, event information, and facility details securely.
 
-Features
+
+
+
+# Features
 
 User Management:
 
@@ -81,7 +129,10 @@ Admin and Staff Roles:
 	•	General Users: Can manage profiles, access facility information, register for events, and submit forms.
 	•	Admins, Event Coordinators, and Facility Managers: Manage content, update facility info, and monitor user feedback and activity.
 
-Tech Stack
+
+
+
+# Tech Stack
 
 	•	Frontend: React Native (cross-platform development for iOS and Android).
 	•	Backend: Node.js, Express, Firebase for authentication, KSU API for data management.
@@ -89,7 +140,10 @@ Tech Stack
 	•	APIs: Integration with third-party services for maps and notifications (e.g., Google Maps API).
 	•	Version Control: GitHub for code collaboration and version management.
 
-Installation
+
+
+
+# Installation
 
 To set up the project locally:
 
@@ -116,7 +170,8 @@ npm start
 
 
 
-Usage
+
+# Usage
 
 Once the app is running, users can:
 
@@ -151,11 +206,14 @@ git push origin feature-branch
 
 Please refer to our [Code of Conduct](link to code of conduct) for more details.
 
-License
+
+
+
+# Contributors
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
-Contact
+## Contact
 
 For any questions, reach out to the project team:
 
