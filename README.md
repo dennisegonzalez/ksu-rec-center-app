@@ -81,6 +81,8 @@ The redesigned app will include features such as personal profiles, event regist
 
 The app is designed for KSU students, faculty, and staff who frequently use the Rec Center facilities and seek a seamless way to interact with the services offered by the center.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -121,6 +123,10 @@ The app follows a client-server architecture where the mobile app serves as the 
     </li>
   </ol>
 </details>
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 # Features
@@ -166,6 +172,10 @@ The app follows a client-server architecture where the mobile app serves as the 
 | General Users                                       | Can manage profiles, access facility information, register for events, and submit forms.   | 
 | Admins, Event Coordinators, and Facility Managers   | Manage content, update facility info, and monitor user feedback and activity.              |
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 
 
 # :link: Tech Stack
@@ -180,6 +190,11 @@ MongoDB for secure storage of user profiles, events, and facility details.
 Integration with third-party services for maps and notifications (e.g., Google Maps API).
 ### Version Control
 GitHub for code collaboration and version management.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 
 
 # Installation
@@ -202,6 +217,11 @@ GitHub for code collaboration and version management.
    git remote set-url origin dennisegonzalez/ksu-rec-center-app
    git remote -v # confirm the changes
    ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
 
 
 
@@ -216,6 +236,10 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 
 # :iphone: Usage
 
@@ -228,7 +252,7 @@ Once the app is running, users can:
 
 For more detailed instructions, refer to the [User Guide](link to user guide).
 
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -244,7 +268,7 @@ For any questions, reach out to the project team:
 	•	Project Manager: [Dennise Gonzalez] (your.email@kennesaw.edu)
 	•	GitHub Repository: https://github.com/dennisegonzalez/ksu-rec-center-app
 
-This version incorporates the technical and functional details outlined in the provided specifications, focusing on the architecture, features, and key components. You can further tailor it with specific GitHub links and developer details.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
