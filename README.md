@@ -1,3 +1,14 @@
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a id="readme-top"></a>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
 <br />
 <div align="center">
   <a href="https://github.com/dennisegonzalez/ksu-rec-center-app">
@@ -45,8 +56,9 @@
     <li><a href="#features">Features</a></li>
     <li><a href="#tech-stack">Tech Stack</a></li>
     <li><a href="#installation">Installation</a></li>
+    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributors">Contributors</a></li>
+    <li><a href="#project-team">Project Team</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -54,14 +66,14 @@
 
 
 
-# About This Project
+# 📖 About This Project
 
 
 ### Purpose
 
 This project focuses on redesigning the KSU Rec Center app to enhance user experience and maximize accessibility. The current app lacks modern design and usability, leading to a decline in usage. Our redesigned app aims to address these issues with a clean, user-friendly interface that simplifies navigation and interaction.
 
-### Scope
+### Scope 
 
 The redesigned app will include features such as personal profiles, event registrations, facility information (maps and hours), and form submissions. It will be developed using modern technologies like React Native, with a secure backend to manage data and integrate APIs for real-time scheduling and notifications.
 
@@ -72,7 +84,7 @@ The app is designed for KSU students, faculty, and staff who frequently use the 
 
 
 
-# System Overview
+# 🖥️ System Overview
 
 ### System Purpose
 
@@ -82,20 +94,33 @@ The goal of the new KSU Rec Center app is to provide a modern platform for users
 
 The app follows a client-server architecture where the mobile app serves as the client and interacts with a secure backend server that manages data and business logic.
 
-### Key Components
-
-	•	Client (Mobile App):
-	•	Developed using React Native for cross-platform functionality (iOS/Android).
-	•	Users can register, log in, view events, and access Rec Center information.
-	•	Includes features like form submissions, event registration, and facility maps.
-	•	Backend Server:
-	•	Manages user authentication, profile data, event handling, and facility information.
-	•	Integrates with third-party APIs for real-time scheduling, notifications, and maps.
-	•	Ensures secure communication with KSU’s cybersecurity protocols.
-	•	Database:
-	•	Stores user data, event information, and facility details securely.
-
-
+<details>
+ <summary>Key Components</summary>
+  <ol>
+    <li>
+      <a>Client (Mobile App):</a>
+      <ul>
+	<li><a>Developed using React Native for cross-platform functionality (iOS/Android).</a></li>
+        <li><a>Users can register, log in, view events, and access Rec Center information.</a></li>
+	<li><a>Includes features like form submissions, event registration, and facility maps.</a></li>
+      </ul>
+    </li>
+    <li>
+      <a>Backend Server:</a>
+      <ul>
+        <li><a>Manages user authentication, profile data, event handling, and facility information.</a></li>
+        <li><a>Integrates with third-party APIs for real-time scheduling, notifications, and maps.</a></li>
+	<li><a>Ensures secure communication with KSU’s cybersecurity protocols.</a></li>
+      </ul>
+    </li>
+    <li>
+      <a>Database:</a>
+      <ul>
+        <li><a>Stores user data, event information, and facility details securely.</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
 
 
 # Features
@@ -143,10 +168,10 @@ The app follows a client-server architecture where the mobile app serves as the 
 
 
 
-# Tech Stack
+# 🔗 Tech Stack
 
-### Frontend [![React][React.js]][React-url]  
- React Native (cross-platform development for iOS and Android).
+[![React][React.js]][React-url]  
+ Frontend: React Native (cross-platform development for iOS and Android).
 ### Backend 
 Node.js, Express, Firebase for authentication, KSU API for data management.
 ### Database
@@ -159,33 +184,40 @@ GitHub for code collaboration and version management.
 
 # Installation
 
-To set up the project locally:
-
-	1.	Clone the repository:
-
-git clone https://github.com/username/ksu-rec-center-app.git
-
-
-	2.	Navigate to the project directory:
-
-cd ksu-rec-center-app
-
-
-	3.	Install dependencies:
-
-npm install
-
-
-	4.	Set up environment variables:
-	•	Create a .env file in the root directory and add Firebase and database credentials.
-	5.	Run the app:
-
-npm start
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/dennisegonzalez/ksu-rec-center-app.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```js
+   const API_KEY = 'ENTER YOUR API';
+   ```
+5. Change git remote url to avoid accidental pushes to base project
+   ```sh
+   git remote set-url origin dennisegonzalez/ksu-rec-center-app
+   git remote -v # confirm the changes
+   ```
 
 
 
+## Contributing
 
-# Usage
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+# 📱 Usage
 
 Once the app is running, users can:
 
@@ -196,34 +228,12 @@ Once the app is running, users can:
 
 For more detailed instructions, refer to the [User Guide](link to user guide).
 
-Contributing
-
-Contributions are welcome! To contribute:
-
-	1.	Fork the repository.
-	2.	Create a new branch:
-
-git checkout -b feature-branch
-
-
-	3.	Make changes and commit:
-
-git commit -m "Add feature"
-
-
-	4.	Push to the branch:
-
-git push origin feature-branch
-
-
-	5.	Open a pull request.
-
-Please refer to our [Code of Conduct](link to code of conduct) for more details.
 
 
 
 
-# Contributors
+
+# 👨‍💻 Project Team
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
@@ -231,22 +241,22 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 For any questions, reach out to the project team:
 
-	•	Project Manager: [Name] (your.email@kennesaw.edu)
-	•	GitHub Repository: GitHub Link
+	•	Project Manager: [Dennise Gonzalez] (your.email@kennesaw.edu)
+	•	GitHub Repository: https://github.com/dennisegonzalez/ksu-rec-center-app
 
 This version incorporates the technical and functional details outlined in the provided specifications, focusing on the architecture, features, and key components. You can further tailor it with specific GitHub links and developer details.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/dennisegonzalez/ksu-rec-center-app.svg?style=for-the-badge
+[contributors-url]: https://github.com/dennnisegonzalez/ksu-rec-center-app/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[forks-url]: https://github.com/dennisegonzalez/ksu-rec-center-app/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[stars-url]: https://github.com/dennisegonzalez/ksu-rec-center-app/stargazers
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[issues-url]: https://github.com/dennisegonzalez/ksu-rec-center-app/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
