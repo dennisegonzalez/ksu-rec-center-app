@@ -38,7 +38,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-this-project">About This Project</a>
+      <a href="about-this-project">About This Project</a>
       <ul>
         <li><a href="#purpose">Purpose</a></li>
 	<li><a href="#scope">Scope</a></li>
@@ -66,7 +66,7 @@
 
 
 
-# 📖 About This Project
+# :book: About This Project
 
 
 ### Purpose
@@ -84,7 +84,7 @@ The app is designed for KSU students, faculty, and staff who frequently use the 
 
 
 
-# 🖥️ System Overview
+# :computer: System Overview
 
 ### System Purpose
 
@@ -168,7 +168,7 @@ The app follows a client-server architecture where the mobile app serves as the 
 
 
 
-# 🔗 Tech Stack
+# :link: Tech Stack
 
 [![React][React.js]][React-url]  
  Frontend: React Native (cross-platform development for iOS and Android).
@@ -217,7 +217,7 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 
-# 📱 Usage
+# :iphone: Usage
 
 Once the app is running, users can:
 
@@ -233,7 +233,7 @@ For more detailed instructions, refer to the [User Guide](link to user guide).
 
 
 
-# 👨‍💻 Project Team
+#  Project Team
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
@@ -251,14 +251,14 @@ This version incorporates the technical and functional details outlined in the p
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/dennisegonzalez/ksu-rec-center-app.svg?style=for-the-badge
 [contributors-url]: https://github.com/dennnisegonzalez/ksu-rec-center-app/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/dennisegonzalez/ksu-rec-center-app.svg?style=for-the-badge
 [forks-url]: https://github.com/dennisegonzalez/ksu-rec-center-app/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/dennisegonzalez/ksu-rec-center-app.svg?style=for-the-badge
 [stars-url]: https://github.com/dennisegonzalez/ksu-rec-center-app/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/dennisegonzalez/ksu-rec-center-app.svg?style=for-the-badge
 [issues-url]: https://github.com/dennisegonzalez/ksu-rec-center-app/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/dennisegonzalez/ksu-rec-center-app.svg?style=for-the-badge
+[license-url]: https://github.com/dennisegonzalez/ksu-rec-center-app/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
@@ -278,4 +278,4 @@ This version incorporates the technical and functional details outlined in the p
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
-[Github.com]: 
+[Github.com]: https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=github&logoColor=white
