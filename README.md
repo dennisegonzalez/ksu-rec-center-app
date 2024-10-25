@@ -58,6 +58,7 @@
     <li><a href="#installation">Installation</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#license">License</a></li>
     <li><a href="#project-team">Project Team</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -256,6 +257,14 @@ For more detailed instructions, refer to the [User Guide](link to user guide).
 
 
 
+# :warning: License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 
 #  Project Team
 
@@ -271,6 +280,7 @@ For any questions, reach out to the project team:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/dennisegonzalez/ksu-rec-center-app.svg?style=for-the-badge
@@ -284,7 +294,7 @@ For any questions, reach out to the project team:
 [license-shield]: https://img.shields.io/github/license/dennisegonzalez/ksu-rec-center-app.svg?style=for-the-badge
 [license-url]: https://github.com/dennisegonzalez/ksu-rec-center-app/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/company/society-of-hispanic-professional-engineers-ksu
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
