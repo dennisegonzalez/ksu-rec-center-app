@@ -36,8 +36,16 @@ const SignIn = () => {
               />
 
               <View className="px-4 py-5">
-                <Text className="text-5xl font-semibold pb-1">Login</Text>
-                <Text className="text-xl text-gray-400">
+                <Text
+                  className="text-5xl pb-2"
+                  style={{ fontFamily: "BeVietnamBold" }}
+                >
+                  Login
+                </Text>
+                <Text
+                  className="text-xl text-gray-400 pb-5"
+                  style={{ fontFamily: "BeVietnam" }}
+                >
                   Please sign in to continue.
                 </Text>
               </View>
@@ -48,7 +56,10 @@ const SignIn = () => {
 
               {/* Login Button */}
               <Pressable className="bg-[rgba(255,198,41,0.75)] px-4 w-[95%] py-3 rounded-xl">
-                <Text className="text-center text-white">
+                <Text
+                  className="text-center text-white"
+                  style={{ fontFamily: "BeVietnam" }}
+                >
                   Student / Staff Login
                 </Text>
               </Pressable>
