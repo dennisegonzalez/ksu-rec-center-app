@@ -32,10 +32,10 @@ const SignIn = () => {
               {/* Top Right Image */}
               <Image
                 source={require("../../assets/images/dumbell.png")}
-                className="absolute top-0 right-0 h-[150px] w-[150px]"
+                className="absolute top-0 right-0 h-[180px] w-[180px]"
               />
 
-              <View className="px-4 py-5">
+              <View className="px-4 py-3">
                 <Text
                   className="text-5xl pb-2"
                   style={{ fontFamily: "BeVietnamBold" }}
@@ -52,7 +52,7 @@ const SignIn = () => {
 
               {/* Input Fields */}
               <InputField style="mb-5" placeholder="Email" icon={"mail"} />
-              <InputField style="mb-10" placeholder="Password" icon={"lock"} />
+              <InputField style="mb-7" placeholder="Password" icon={"lock"} />
 
               {/* Login Button */}
               <Pressable className="bg-[rgba(255,198,41,0.75)] px-4 w-[95%] py-3 rounded-xl">
