@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import React from "react";
 import { Pressable } from "react-native";
-import InputField from "../../components/InputField";
+import InputField from "../../../components/InputField";
 import { TextInput } from "react-native";
 import { TouchableWithoutFeedback } from "react-native";
 const SignIn = () => {
