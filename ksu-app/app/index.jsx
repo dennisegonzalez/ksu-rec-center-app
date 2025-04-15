@@ -5,6 +5,6 @@ export default function Index() {
   if (signedIn) {
     return;
   } else {
-    return <Redirect href="/(auth)/sign-in" />;
+    return <Redirect href="/screens/events" />;
   }
 }
