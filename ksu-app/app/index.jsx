@@ -1,9 +1,9 @@
 import { Redirect } from "expo-router";
 
-const signedIn = false;
+const signedIn = true;
 export default function Index() {
   if (signedIn) {
-    return;
+    return <Redirect href="/screens/today" />;
   } else {
     return <Redirect href="/screens/(auth)/sign-in" />;
   }
