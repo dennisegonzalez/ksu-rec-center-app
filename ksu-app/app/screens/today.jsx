@@ -9,26 +9,45 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Image,
 } from "react-native";
 import React, { useState } from "react";
 
 const Today = () => {
   const [selectedLocation, setSelectedLocation] = useState('Kennesaw');
 
+  const renderActivityBox = () => (
+    <View style={styles.activityBox}>
+      <View style={styles.activityHeader}>
+        <Text style={styles.activityTitle}>Current Activity</Text>
+        <View style={styles.activityCountContainer}>
+          <Text style={styles.activityCount}>
+            {selectedLocation === 'Kennesaw' ? '130' : '85'}
+          </Text>
+          <Text style={styles.activityLabel}>students</Text>
+        </View>
+      </View>
+      <View style={styles.activityGraph} />
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollContent}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.menuButton}>
-            <Text style={styles.menuIcon}>☰</Text>
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Today</Text>
-          <TouchableOpacity style={styles.notificationButton}>
-            <Text style={styles.notificationIcon}>🔔</Text>
-          </TouchableOpacity>
-        </View>
+      {/* Fixed Header */}
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.menuButton}>
+          <Text style={styles.menuIcon}>☰</Text>
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Today</Text>
+        <TouchableOpacity style={styles.notificationButton}>
+          <Text style={styles.notificationIcon}>🔔</Text>
+        </TouchableOpacity>
+      </View>
 
+      <ScrollView 
+        style={styles.scrollContent}
+        contentContainerStyle={styles.scrollContentContainer}
+      >
         {/* Greeting */}
         <Text style={styles.greeting}>Good Morning, Dennise 👋</Text>
 
@@ -62,15 +81,14 @@ const Today = () => {
 
         {/* Current Activity */}
         <View style={styles.activitySection}>
-          <View style={styles.activityBox}>
-            <View style={styles.activityHeader}>
-              <Text style={styles.activityTitle}>Current Activity</Text>
-              <View style={styles.activityCountContainer}>
-                <Text style={styles.activityCount}>130</Text>
-                <Text style={styles.activityLabel}>students</Text>
-              </View>
-            </View>
-            <View style={styles.activityGraph} />
+          {renderActivityBox()}
+        </View>
+
+        {/* Calendar Section */}
+        <View style={styles.calendarSection}>
+          <Text style={styles.sectionTitle}>Scrappy Fit Calendar</Text>
+          <View style={styles.calendarBox}>
+            <Text style={styles.placeholderText}>*Insert Calendar*</Text>
           </View>
         </View>
         
@@ -81,19 +99,32 @@ const Today = () => {
       {/* Fixed Bottom Navigation */}
       <View style={styles.bottomNav}>
         <TouchableOpacity style={styles.navItem}>
-          <Text style={[styles.navIcon, styles.activeNavItem]}>📅</Text>
-          <Text style={[styles.navText, styles.activeNavItem]}>Today</Text>
+          <Image 
+            source={require('../../assets/images/Today.png')} 
+            style={styles.navIcon} 
+          />
+          <Text style={styles.navText}>Today</Text>
+          <View style={styles.activeIndicator} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navIcon}>📍</Text>
+          <Image 
+            source={require('../../assets/images/Map.png')} 
+            style={styles.navIcon} 
+          />
           <Text style={styles.navText}>Map</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navIcon}>≡</Text>
+          <Image 
+            source={require('../../assets/images/Services.png')} 
+            style={styles.navIcon} 
+          />
           <Text style={styles.navText}>Services</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Text style={styles.navIcon}>👤</Text>
+          <Image 
+            source={require('../../assets/images/Profile.png')} 
+            style={styles.navIcon} 
+          />
           <Text style={styles.navText}>Profile</Text>
         </TouchableOpacity>
       </View>
@@ -106,10 +137,7 @@ export default Today;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
-  },
-  scrollContent: {
-    flex: 1,
+    backgroundColor: '#FAFAFA',
   },
   header: {
     flexDirection: 'row',
@@ -117,11 +145,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 10,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: '600',
     fontFamily: 'BeVietnamSemiBold',
+    color: '#414348',
   },
   menuIcon: {
     fontSize: 24,
@@ -130,36 +164,40 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   greeting: {
-    fontSize: 28,
+    fontSize: 24,
     fontFamily: 'BeVietnamBold',
     paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
+    paddingTop: 5,
+    paddingBottom: 15,
     color: '#414348',
+    marginLeft: 10,
   },
   eventsSection: {
     paddingHorizontal: 20,
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '600',
-    marginBottom: 15,
+    marginBottom: 10,
     fontFamily: 'BeVietnamSemiBold',
+    marginLeft: 15,
   },
   eventCard: {
-    height: 200,
+    height: 160,
     backgroundColor: '#FFBF00',
     borderRadius: 15,
-    marginBottom: 20,
+    marginBottom: 15,
   },
   locationTabs: {
     flexDirection: 'row',
     paddingHorizontal: 20,
-    marginBottom: 20,
+    marginBottom: 10,
+    marginTop: 20,
+    marginLeft: 15,
   },
   locationTab: {
     paddingHorizontal: 20,
-    paddingVertical: 8,
+    paddingVertical: 6,
     borderRadius: 20,
     marginRight: 10,
   },
@@ -173,12 +211,12 @@ const styles = StyleSheet.create({
   },
   activitySection: {
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 5,
   },
   activityBox: {
     backgroundColor: '#ffffff',
     borderRadius: 15,
-    padding: 20,
+    padding: 15,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -190,10 +228,10 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   activityHeader: {
-    marginBottom: 20,
+    marginBottom: 15,
   },
   activityTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'BeVietnamSemiBold',
     color: '#666666',
     marginBottom: 5,
@@ -214,7 +252,7 @@ const styles = StyleSheet.create({
     fontFamily: 'BeVietnam',
   },
   activityGraph: {
-    height: 120,
+    height: 100,
     backgroundColor: '#ffffff00',
     borderRadius: 15,
   },
@@ -224,7 +262,8 @@ const styles = StyleSheet.create({
   bottomNav: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 15,
+    paddingTop: 15,
+    paddingBottom: 30,
     borderTopWidth: 1,
     borderTopColor: '#eeeeee',
     backgroundColor: '#ffffff',
@@ -235,17 +274,53 @@ const styles = StyleSheet.create({
   },
   navItem: {
     alignItems: 'center',
+    position: 'relative',
+    paddingHorizontal: 15,
+    justifyContent: 'center',
   },
   navIcon: {
-    fontSize: 24,
+    width: 22,
+    height: 22,
     marginBottom: 5,
+    tintColor: '#666666',
+    resizeMode: 'contain',
+    alignSelf: 'center',
   },
   navText: {
     fontSize: 12,
     color: '#666666',
     fontFamily: 'BeVietnamMedium',
+    marginBottom: 3,
   },
-  activeNavItem: {
-    color: '#FFBF00',
+  activeIndicator: {
+    position: 'absolute',
+    bottom: -5,
+    width: 45,
+    height: 3,
+    backgroundColor: '#999999',
+    borderRadius: 1.5,
+  },
+  calendarSection: {
+    paddingHorizontal: 20,
+    marginTop: 15,
+  },
+  calendarBox: {
+    backgroundColor: '#F5F5F5',
+    borderRadius: 15,
+    padding: 20,
+    height: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  placeholderText: {
+    fontSize: 16,
+    color: '#666666',
+    fontFamily: 'BeVietnam',
+  },
+  scrollContent: {
+    flex: 1,
+  },
+  scrollContentContainer: {
+    paddingTop: 60, // Accounts for header height
   },
 });
