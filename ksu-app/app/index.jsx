@@ -5,6 +5,6 @@ export default function Index() {
   if (signedIn) {
     return;
   } else {
-    return <Redirect href="/screens/(auth)/sign-in" />;
+    return <Redirect href="/screens/calendar" />; // change based on what app you want displayed on the app
   }
 }
