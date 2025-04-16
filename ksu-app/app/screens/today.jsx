@@ -12,6 +12,8 @@ import {
   Image,
 } from "react-native";
 import React, { useState } from "react";
+import {Link} from "expo-router";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Today = () => {
   const [selectedLocation, setSelectedLocation] = useState('Kennesaw');
@@ -35,13 +37,25 @@ const Today = () => {
     <SafeAreaView style={styles.container}>
       {/* Fixed Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.menuButton}>
-          <Text style={styles.menuIcon}>☰</Text>
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Today</Text>
-        <TouchableOpacity style={styles.notificationButton}>
-          <Text style={styles.notificationIcon}>🔔</Text>
-        </TouchableOpacity>
+        <LinearGradient
+          colors={['rgba(250, 250, 250, .9)', 'rgba(250, 250, 250, 0)']}
+          style={styles.gradient}
+        >
+          <TouchableOpacity style={styles.menuButton}>
+            <Text style={styles.menuIcon}>☰</Text>
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Today</Text>
+          <Link href="/screens/notifications" asChild>
+            <TouchableOpacity style={styles.notificationButton}>
+              <Text style={styles.notificationIcon}>
+                <Image 
+                  source={require('../../assets/images/Notifications.png')} 
+                  style={styles.notificationIcon} 
+                />
+              </Text>
+            </TouchableOpacity>
+          </Link>
+        </LinearGradient>
       </View>
 
       <ScrollView 
@@ -54,7 +68,11 @@ const Today = () => {
         {/* Events Section */}
         <View style={styles.eventsSection}>
           <Text style={styles.sectionTitle}>Events For You</Text>
-          <View style={styles.eventCard} />
+          <Image 
+            source={require('../../assets/images/EventsToday.png')}
+            style={styles.eventCard}
+            resizeMode="cover"
+          />
         </View>
 
         {/* Location Tabs */}
@@ -143,32 +161,39 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     zIndex: 1,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: '600',
-    fontFamily: 'BeVietnamSemiBold',
     color: '#414348',
   },
   menuIcon: {
-    fontSize: 24,
+    fontSize: 34,
   },
   notificationIcon: {
-    fontSize: 24,
+    width: 22,
+    height: 22,
+    resizeMode: 'contain',
   },
   greeting: {
     fontSize: 24,
-    fontFamily: 'BeVietnamBold',
+    fontWeight: 'bold',
     paddingHorizontal: 20,
     paddingTop: 5,
-    paddingBottom: 15,
+    paddingBottom: 25,
     color: '#414348',
     marginLeft: 10,
   },
@@ -177,27 +202,26 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: '600',
     marginBottom: 10,
-    fontFamily: 'BeVietnamSemiBold',
-    marginLeft: 15,
+    marginLeft: 12.5,
   },
   eventCard: {
-    height: 160,
-    backgroundColor: '#FFBF00',
-    borderRadius: 15,
-    marginBottom: 15,
+    height: 170,
+    width: '100%',
+    margin: 2,
+    borderRadius: 20,
+    marginBottom: 25,
   },
   locationTabs: {
     flexDirection: 'row',
     paddingHorizontal: 20,
     marginBottom: 10,
     marginTop: 20,
-    marginLeft: 15,
+    marginLeft: 18,
   },
   locationTab: {
-    paddingHorizontal: 20,
-    paddingVertical: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     borderRadius: 20,
     marginRight: 10,
   },
@@ -206,8 +230,7 @@ const styles = StyleSheet.create({
   },
   locationText: {
     color: '#4C4C4C',
-    fontFamily: 'BeVietnamMedium',
-    fontSize: 16,
+    fontSize: 18,
   },
   activitySection: {
     paddingHorizontal: 20,
@@ -215,8 +238,9 @@ const styles = StyleSheet.create({
   },
   activityBox: {
     backgroundColor: '#ffffff',
-    borderRadius: 15,
+    borderRadius: 12,
     padding: 15,
+    paddingTop: 10,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -232,24 +256,23 @@ const styles = StyleSheet.create({
   },
   activityTitle: {
     fontSize: 18,
-    fontFamily: 'BeVietnamSemiBold',
+    fontFamily: 'BeVietnamLight',
     color: '#666666',
-    marginBottom: 5,
+    marginBottom: 0,
   },
   activityCountContainer: {
     flexDirection: 'row',
     alignItems: 'baseline',
   },
   activityCount: {
-    fontSize: 32,
-    fontFamily: 'BeVietnamBold',
+    fontSize: 24,
     color: '#414348',
     marginRight: 5,
   },
   activityLabel: {
     fontSize: 16,
     color: '#999999',
-    fontFamily: 'BeVietnam',
+    fontFamily: 'BeVietnamRegular',
   },
   activityGraph: {
     height: 100,
@@ -288,8 +311,7 @@ const styles = StyleSheet.create({
   },
   navText: {
     fontSize: 12,
-    color: '#666666',
-    fontFamily: 'BeVietnamMedium',
+    color: '#9E9E9E',
     marginBottom: 3,
   },
   activeIndicator: {
@@ -315,12 +337,23 @@ const styles = StyleSheet.create({
   placeholderText: {
     fontSize: 16,
     color: '#666666',
-    fontFamily: 'BeVietnam',
   },
   scrollContent: {
     flex: 1,
   },
   scrollContentContainer: {
     paddingTop: 60, // Accounts for header height
+  },
+  gradient: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    right: 0, 
   },
 });
