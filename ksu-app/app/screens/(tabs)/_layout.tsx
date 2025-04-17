@@ -35,24 +35,14 @@ const TabsLayout = () => {
           title: "Today",
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => (
-            <View style={{ alignItems: "center" }}>
+            <View style={styles.tabItem}>
               <MaterialCommunityIcons
                 name="calendar-today"
                 size={size}
                 color={color}
               />
-              <Text style={{ fontSize: 12, color }}>{"Today"}</Text>
-              {focused && (
-                <View
-                  style={{
-                    width: 50,
-                    height: 2,
-                    backgroundColor: "grey", // or any highlight color
-                    borderRadius: 2,
-                    marginTop: 1,
-                  }}
-                />
-              )}
+              <Text style={styles.tabText}>Today</Text>
+              {focused && <View style={styles.indicator} />}
             </View>
           ),
           tabBarLabel: () => null, // hide default label since we added custom one above
@@ -64,20 +54,10 @@ const TabsLayout = () => {
           title: "Map",
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => (
-            <View style={{ alignItems: "center" }}>
+            <View style={styles.tabItem}>
               <FontAwesome5 name="map-marker-alt" size={size} color={color} />
-              <Text style={{ fontSize: 12, color }}>{"Map"}</Text>
-              {focused && (
-                <View
-                  style={{
-                    width: 50,
-                    height: 2,
-                    backgroundColor: "grey", // or any highlight color
-                    borderRadius: 2,
-                    marginTop: 1,
-                  }}
-                />
-              )}
+              <Text style={styles.tabText}>Map</Text>
+              {focused && <View style={styles.indicator} />}
             </View>
           ),
           tabBarLabel: () => null, // hide default label since we added custom one above
@@ -89,20 +69,10 @@ const TabsLayout = () => {
           title: "Services",
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => (
-            <View style={{ alignItems: "center" }}>
+            <View style={styles.tabItem}>
               <AntDesign name="bars" size={size} color={color} />
-              <Text style={{ fontSize: 12, color }}>{"Services"}</Text>
-              {focused && (
-                <View
-                  style={{
-                    width: 50,
-                    height: 2,
-                    backgroundColor: "grey", // or any highlight color
-                    borderRadius: 2,
-                    marginTop: 1,
-                  }}
-                />
-              )}
+              <Text style={styles.tabText}>Services</Text>
+              {focused && <View style={styles.indicator} />}
             </View>
           ),
           tabBarLabel: () => null, // hide default label since we added custom one above
@@ -114,20 +84,10 @@ const TabsLayout = () => {
           title: "Profile",
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => (
-            <View style={{ alignItems: "center" }}>
+            <View style={styles.tabItem}>
               <FontAwesome6 name="user" size={size} color={color} />
-              <Text style={{ fontSize: 12, color }}>{"Profile"}</Text>
-              {focused && (
-                <View
-                  style={{
-                    width: 50,
-                    height: 2,
-                    backgroundColor: "grey", // or any highlight color
-                    borderRadius: 2,
-                    marginTop: 1,
-                  }}
-                />
-              )}
+              <Text style={styles.tabText}>Profile</Text>
+              {focused && <View style={styles.indicator} />}
             </View>
           ),
           tabBarLabel: () => null, // hide default label since we added custom one above
@@ -136,5 +96,26 @@ const TabsLayout = () => {
     </Tabs>
   );
 };
+
+const styles = StyleSheet.create({
+  tabItem: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 80,
+  },
+  tabText: {
+    fontSize: 12,
+    marginTop: 4,
+    textAlign: "center",
+    width: "100%",
+  },
+  indicator: {
+    width: 50,
+    height: 2,
+    backgroundColor: "grey",
+    borderRadius: 2,
+    marginTop: 3,
+  },
+});
 
 export default TabsLayout;

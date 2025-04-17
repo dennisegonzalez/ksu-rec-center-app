@@ -11,7 +11,7 @@ import {
   const Calendar = () => {
     return (
       <SafeAreaView>
-
+        <Text>Profile</Text>
       </SafeAreaView>
     );
   };

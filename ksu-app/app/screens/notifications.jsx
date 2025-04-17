@@ -69,7 +69,7 @@ import {
         <View style={styles.bottomPadding} />
 
         {/* Fixed Bottom Navigation */}
-        <View style={styles.bottomNav}>
+        {/*<View style={styles.bottomNav}>
           <TouchableOpacity 
             style={styles.navItem}
             onPress={() => router.push('/screens/today')}
@@ -111,7 +111,7 @@ import {
             />
             <Text style={styles.navText}>Profile</Text>
           </TouchableOpacity>
-        </View>
+        </View>*/}
       </SafeAreaView>
     );
   };
