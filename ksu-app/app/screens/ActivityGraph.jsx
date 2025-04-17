@@ -47,10 +47,10 @@ const ActivityGraph = ({ onCountUpdate }) => {
     const now = new Date();
     const currentHour = now.getHours();
     for (let i = 0; i < timeLabels.length; i++) {
-      const currentHour = getHourFromLabel(timeLabels[i]);
+      const labelHour = getHourFromLabel(timeLabels[i]);
       const nextLabel = timeLabels[i + 1];
       const nextHour = nextLabel ? getHourFromLabel(nextLabel) : 23;
-      if (currentHour >= currentHour && currentHour < nextHour) {
+      if (currentHour >= labelHour && currentHour < nextHour) {
         return i;
       }
     }
