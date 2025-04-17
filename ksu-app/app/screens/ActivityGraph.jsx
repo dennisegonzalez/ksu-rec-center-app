@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -8,141 +8,90 @@ import {
 } from 'react-native';
 import Svg, { Path, Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
 
-const ActivityGraph = ({ onCountUpdate }) => {
-  const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
-  const [isGymOpen, setIsGymOpen] = useState(true);
-  
-  // Check if current time is within operating hours (7AM-11PM)
-  const checkGymHours = () => {
-    const now = new Date();
-    const hour = now.getHours();
-    return hour >= 7 && hour < 23; // 7AM to 11PM
-  };
+// Location data outside component to prevent recreation
+const locationData = {
+  Kennesaw: {
+    dataPoints: [15, 120, 85, 130, 95, 125, 130, 90, 40],
+    timeLabels: ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM', '11PM']
+  },
+  Marietta: {
+    dataPoints: [5, 60, 45, 80, 55, 75, 85, 50, 20],
+    timeLabels: ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM', '11PM']
+  }
+};
 
-  // Convert time string to minutes since 7AM
-  const timeToMinutes = (timeStr) => {
-    const [hour, period] = timeStr.match(/(\d+)([AP]M)/).slice(1);
-    let minutes = parseInt(hour) * 60;
-    if (period === 'PM' && hour !== '12') minutes += 12 * 60;
-    if (period === 'AM' && hour === '12') minutes = 0;
-    return minutes - 7 * 60;
-  };
+const ActivityGraph = ({ onCountUpdate, location = 'Kennesaw' }) => {
+  // Get location data
+  const { dataPoints, timeLabels } = locationData[location];
+  const lastCountRef = useRef(null);
 
-  // Data points represent actual student counts through the day
-  const dataPoints = [15, 120, 85, 130, 95, 125, 130, 90, 40];
-  const timeLabels = ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM', '11PM'];
-
-  // Function to get hour from time label
-  const getHourFromLabel = (label) => {
+  // Function to convert time label to 24-hour format
+  const getHourFromLabel = useCallback((label) => {
     const match = label.match(/(\d+)([AP]M)/);
     if (!match) return -1;
     let hour = parseInt(match[1]);
-    if (match[2] === 'PM' && hour !== 12) hour += 12;
-    if (match[2] === 'AM' && hour === 12) hour = 0;
+    const period = match[2];
+    
+    if (period === 'PM' && hour !== 12) {
+      hour += 12;
+    } else if (period === 'AM' && hour === 12) {
+      hour = 0;
+    }
     return hour;
-  };
+  }, []);
 
-  // Calculate which label should be highlighted based on current time
-  const getCurrentLabelIndex = () => {
+  // Calculate current data
+  const currentData = useMemo(() => {
     const now = new Date();
     const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const totalMinutes = (currentHour * 60 + currentMinute) - (7 * 60);
+
+    const isOpen = totalMinutes >= 0 && totalMinutes < 960;
+    if (!isOpen) return { isOpen, count: 0, position: 0, activeLabelIndex: 0 };
+
+    const position = totalMinutes / 960 * (dataPoints.length - 1);
+    
+    // Calculate student count
+    const leftIndex = Math.floor(position);
+    const rightIndex = Math.min(leftIndex + 1, dataPoints.length - 1);
+    const progress = position - leftIndex;
+    const leftCount = dataPoints[leftIndex];
+    const rightCount = dataPoints[rightIndex];
+    const count = Math.round(leftCount + (rightCount - leftCount) * progress);
+
+    // Find active label
+    let activeLabelIndex = 0;
     for (let i = 0; i < timeLabels.length; i++) {
       const labelHour = getHourFromLabel(timeLabels[i]);
       const nextLabel = timeLabels[i + 1];
       const nextHour = nextLabel ? getHourFromLabel(nextLabel) : 23;
+      
       if (currentHour >= labelHour && currentHour < nextHour) {
-        return i;
+        activeLabelIndex = i;
+        break;
       }
     }
-    return 0;
-  };
 
-  const activeLabelIndex = getCurrentLabelIndex();
+    return { isOpen, count, position, activeLabelIndex };
+  }, [dataPoints, timeLabels, getHourFromLabel]);
 
-  // Get current time position and check gym hours
+  // Update count callback only when count actually changes
   useEffect(() => {
-    const updateTimePosition = () => {
-      const now = new Date();
-      const currentHour = now.getHours();
-      const currentMinute = now.getMinutes();
-      const totalMinutes = (currentHour * 60 + currentMinute) - (7 * 60);
+    if (onCountUpdate && currentData.count !== lastCountRef.current) {
+      lastCountRef.current = currentData.count;
+      onCountUpdate(currentData.count);
+    }
+  }, [currentData.count, onCountUpdate]);
 
-      const isOpen = totalMinutes >= 0 && totalMinutes < 960;
-      setIsGymOpen(isOpen);
-      
-      if (!isOpen) {
-        onCountUpdate && onCountUpdate(0);
-        return;
-      }
-
-      const position = totalMinutes / 960 * (dataPoints.length - 1);
-      setCurrentTimeIndex(position);
-
-      // Calculate current student count
-      const leftIndex = Math.floor(position);
-      const rightIndex = Math.min(leftIndex + 1, dataPoints.length - 1);
-      const progress = position - leftIndex;
-      const leftCount = dataPoints[leftIndex];
-      const rightCount = dataPoints[rightIndex];
-      const interpolatedCount = Math.round(leftCount + (rightCount - leftCount) * progress);
-      
-      // Update parent component with current count
-      onCountUpdate && onCountUpdate(interpolatedCount);
-    };
-
-    updateTimePosition();
-    const interval = setInterval(updateTimePosition, 60000);
-    return () => clearInterval(interval);
-  }, [onCountUpdate]);
-
-  // Graph dimensions
-  const width = Dimensions.get('window').width - 82;
-  const height = 98;
-  
-  // Calculate text width approximation
-  const textWidth = 30;
-  const startX = textWidth / 2;
-  const endX = width - textWidth / 2;
-  const graphWidth = endX - startX;
-
-  // Function to normalize student count to graph height (25-130 range to 0-1)
-  const normalizeStudentCount = (count) => (count - 25) / (130 - 25);
-
-  // Create the curved line path with area for gradient
-  const points = dataPoints.map((point, index) => {
-    const x = startX + (index / (dataPoints.length - 1)) * graphWidth;
-    const y = 10 + ((1 - normalizeStudentCount(point)) * (height - 20));
-    return `${x},${y}`;
-  });
-
-  // Create path for both line and fill
-  const linePath = `M ${points[0]} ${points.slice(1).map((point, i) => {
-    const x1 = startX + (i * graphWidth / (dataPoints.length - 1)) + (graphWidth / (dataPoints.length - 1)) / 2;
-    const x2 = startX + ((i + 1) * graphWidth / (dataPoints.length - 1)) - (graphWidth / (dataPoints.length - 1)) / 2;
-    const y1 = 10 + ((1 - normalizeStudentCount(dataPoints[i])) * (height - 20));
-    const y2 = 10 + ((1 - normalizeStudentCount(dataPoints[i + 1])) * (height - 20));
-    return `C ${x1},${y1} ${x2},${y2} ${point}`;
-  }).join(' ')}`;
-
-  // Add bottom line to create closed path for gradient
-  const fillPath = `${linePath} L ${endX},${height - 10} L ${startX},${height - 10} Z`;
-
-  // Calculate exact position and interpolated Y value
-  const exactX = startX + (currentTimeIndex / (dataPoints.length - 1)) * graphWidth;
-  
-  // Find surrounding data points for Y interpolation
-  const leftIndex = Math.floor(currentTimeIndex);
-  const rightIndex = Math.min(leftIndex + 1, dataPoints.length - 1);
-  const progress = currentTimeIndex - leftIndex;
-  
-  // Interpolate Y value between data points
-  const leftY = dataPoints[leftIndex];
-  const rightY = dataPoints[rightIndex];
-  const interpolatedCount = leftY + (rightY - leftY) * progress;
-  const currentY = 10 + ((1 - normalizeStudentCount(interpolatedCount)) * (height - 20));
+  // Calculate min and max for normalization
+  const { minCount, maxCount } = useMemo(() => ({
+    minCount: Math.min(...dataPoints),
+    maxCount: Math.max(...dataPoints)
+  }), [dataPoints]);
 
   // If gym is closed, show message
-  if (!isGymOpen) {
+  if (!currentData.isOpen) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={[styles.graphContainer, styles.closedContainer]}>
@@ -153,6 +102,37 @@ const ActivityGraph = ({ onCountUpdate }) => {
       </SafeAreaView>
     );
   }
+
+  // Graph dimensions
+  const width = Dimensions.get('window').width - 82;
+  const height = 98;
+  const textWidth = 30;
+  const startX = textWidth / 2;
+  const endX = width - textWidth / 2;
+  const graphWidth = endX - startX;
+
+  // Create the curved line path with area for gradient
+  const points = dataPoints.map((point, index) => {
+    const x = startX + (index / (dataPoints.length - 1)) * graphWidth;
+    const y = 10 + ((1 - (point - minCount) / (maxCount - minCount)) * (height - 20));
+    return `${x},${y}`;
+  });
+
+  // Create path for both line and fill
+  const linePath = `M ${points[0]} ${points.slice(1).map((point, i) => {
+    const x1 = startX + (i * graphWidth / (dataPoints.length - 1)) + (graphWidth / (dataPoints.length - 1)) / 2;
+    const x2 = startX + ((i + 1) * graphWidth / (dataPoints.length - 1)) - (graphWidth / (dataPoints.length - 1)) / 2;
+    const y1 = 10 + ((1 - (dataPoints[i] - minCount) / (maxCount - minCount)) * (height - 20));
+    const y2 = 10 + ((1 - (dataPoints[i + 1] - minCount) / (maxCount - minCount)) * (height - 20));
+    return `C ${x1},${y1} ${x2},${y2} ${point}`;
+  }).join(' ')}`;
+
+  // Add bottom line to create closed path for gradient
+  const fillPath = `${linePath} L ${endX},${height - 10} L ${startX},${height - 10} Z`;
+
+  // Calculate exact position and interpolated Y value
+  const exactX = startX + (currentData.position / (dataPoints.length - 1)) * graphWidth;
+  const currentY = 10 + ((1 - (currentData.count - minCount) / (maxCount - minCount)) * (height - 20));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -188,15 +168,15 @@ const ActivityGraph = ({ onCountUpdate }) => {
         {timeLabels.map((label, index) => (
           <Text key={index} style={[
             styles.timeLabel,
-            index === activeLabelIndex && styles.activeTimeLabel
+            index === currentData.activeLabelIndex && styles.activeTimeLabel
           ]}>
             <Text style={[
               styles.timeNumber,
-              index === activeLabelIndex && styles.activeTimeNumber
+              index === currentData.activeLabelIndex && styles.activeTimeNumber
             ]}>{label.replace(/[APM]/g, '')}</Text>
             <Text style={[
               styles.timePeriod,
-              index === activeLabelIndex && styles.activeTimePeriod
+              index === currentData.activeLabelIndex && styles.activeTimePeriod
             ]}>{label.match(/[APM]+/)[0]}</Text>
           </Text>
         ))}

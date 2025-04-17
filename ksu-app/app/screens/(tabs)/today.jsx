@@ -12,25 +12,26 @@ import {
   Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import {Link} from "expo-router";
+import { Link, useLocalSearchParams } from "expo-router";
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 
 const Today = () => {
+  const { firstName } = useLocalSearchParams();
   const [selectedLocation, setSelectedLocation] = useState('Kennesaw');
   const [currentTime, setCurrentTime] = useState(
     new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
   );
-  const [studentCount, setStudentCount] = useState(0);
-  const [testMinutes, setTestMinutes] = useState((16 * 60 + 32) - (7 * 60)); // Start at 4:32 PM
+  const [studentCounts, setStudentCounts] = useState({
+    Kennesaw: 0,
+    Marietta: 0
+  });
 
-  const updateTestTime = (increment) => {
-    setTestMinutes(prev => {
-      const newMinutes = prev + increment;
-      const hour = Math.floor(newMinutes / 60) + 7;
-      const minute = newMinutes % 60;
-      setCurrentTime(new Date(2024, 0, 1, hour, minute).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
-      return newMinutes;
-    });
+  const handleCountUpdate = (count) => {
+    setStudentCounts(prev => ({
+      ...prev,
+      [selectedLocation]: count
+    }));
   };
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const Today = () => {
         <Text style={styles.activityTitle}>Current Activity</Text>
         <View style={styles.activityCountContainer}>
           <Text style={styles.activityCount}>
-            {studentCount}
+            {studentCounts[selectedLocation]}
           </Text>
           <Text style={styles.activityLabel}>students</Text>
           <Text style={styles.currentTime}>
@@ -54,105 +55,84 @@ const Today = () => {
           </Text>
         </View>
       </View>
-      <ActivityGraph onCountUpdate={setStudentCount} testMinutes={testMinutes} />
+      <View style={styles.activityGraphContainer}>
+        <ActivityGraph onCountUpdate={handleCountUpdate} location={selectedLocation} />
+      </View>
     </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Fixed Header */}
-      <SafeAreaView style={styles.header}>
-        <LinearGradient
-          colors={['rgba(245, 245, 245, 0.8)', 'rgba(245, 245, 245, 0)']}
-          style={styles.gradient}
-        >
-          <TouchableOpacity style={styles.menuButton}>
-            <Text style={styles.menuIcon}>☰</Text>
+      <View style={styles.header}>
+        <TouchableOpacity>
+          <Ionicons name="menu" size={24} color="#000" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Today</Text>
+        <Link href="/screens/notifications" asChild>
+          <TouchableOpacity>
+            <Ionicons name="notifications" size={24} color="#000" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Today</Text>
-          <Link href="/screens/notifications" asChild>
-            <TouchableOpacity style={styles.notificationButton}>
-              <Text style={styles.notificationIcon}>
-                <Image 
-                  source={require('../../../assets/images/Notifications.png')} 
-                  style={styles.notificationIcon} 
-                />
-              </Text>
-            </TouchableOpacity>
-          </Link>
-        </LinearGradient>
-      </SafeAreaView>
+        </Link>
+      </View>
 
       <ScrollView 
         style={styles.scrollContent}
         contentContainerStyle={styles.scrollContentContainer}
+        showsVerticalScrollIndicator={false}
       >
-        {/* Greeting */}
-        <Text style={styles.greeting}>Good Morning, Dennise 👋</Text>
+        {/* Main Content */}
+        <View style={styles.mainContent}>
+          {/* Greeting */}
+          <Text style={styles.greeting}>Good Morning, {firstName || 'SHPE'} 👋</Text>
 
-        {/* Events Section */}
-        <View style={styles.eventsSection}>
-          <Text style={styles.sectionTitle}>Events For You</Text>
-          <Image 
-            source={require('../../../assets/images/EventsToday.png')}
-            style={styles.eventCard}
-            resizeMode="cover"
-          />
-        </View>
-
-        {/* Location Tabs and Test Buttons */}
-        <View style={styles.tabContainer}>
-          <View style={styles.locationTabs}>
-            <TouchableOpacity 
-              style={[
-                styles.locationTab,
-                selectedLocation === 'Kennesaw' && styles.activeLocationTab
-              ]}
-              onPress={() => setSelectedLocation('Kennesaw')}
-            >
-              <Text style={styles.locationText}>Kennesaw</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={[
-                styles.locationTab,
-                selectedLocation === 'Marietta' && styles.activeLocationTab
-              ]}
-              onPress={() => setSelectedLocation('Marietta')}
-            >
-              <Text style={styles.locationText}>Marietta</Text>
-            </TouchableOpacity>
+          {/* Events Section */}
+          <View style={styles.eventsSection}>
+            <Text style={styles.sectionTitle}>Events For You</Text>
+            <Image 
+              source={require('../../../assets/images/EventsToday.png')}
+              style={styles.eventCard}
+              resizeMode="cover"
+            />
           </View>
-          <View style={styles.testButtonContainer}>
-            <TouchableOpacity 
-              style={styles.testButton}
-              onPress={() => updateTestTime(-1)}
-            >
-              <Text style={styles.testButtonText}>-</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={styles.testButton}
-              onPress={() => updateTestTime(1)}
-            >
-              <Text style={styles.testButtonText}>+</Text>
-            </TouchableOpacity>
+
+          {/* Location Tabs */}
+          <View style={styles.tabContainer}>
+            <View style={styles.locationTabs}>
+              <TouchableOpacity 
+                style={[
+                  styles.locationTab,
+                  selectedLocation === 'Kennesaw' && styles.activeLocationTab
+                ]}
+                onPress={() => setSelectedLocation('Kennesaw')}
+              >
+                <Text style={styles.locationText}>Kennesaw</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={[
+                  styles.locationTab,
+                  selectedLocation === 'Marietta' && styles.activeLocationTab
+                ]}
+                onPress={() => setSelectedLocation('Marietta')}
+              >
+                <Text style={styles.locationText}>Marietta</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
 
-        {/* Current Activity */}
-        <View style={styles.activitySection}>
-          {renderActivityBox()}
-        </View>
+          {/* Current Activity */}
+          <View style={styles.activitySection}>
+            {renderActivityBox()}
+          </View>
 
-        {/* Calendar Section */}
-        <View style={styles.calendarSection}>
-          <Text style={styles.sectionTitle}>Scrappy Fit Calendar</Text>
-          <View style={styles.calendarBox}>
-            <Text style={styles.placeholderText}>*Insert Calendar*</Text>
+          {/* Calendar Section */}
+          <View style={styles.calendarSection}>
+            <Text style={styles.sectionTitle}>Scrappy Fit Calendar</Text>
+            <View style={styles.calendarBox}>
+              <Text style={styles.placeholderText}>*Insert Calendar*</Text>
+            </View>
           </View>
         </View>
-        
-        {/* Add padding at bottom to account for fixed navigation */}
-        <View style={styles.bottomPadding} />
       </ScrollView>
 
       {/* Fixed Bottom Navigation */}
@@ -203,32 +183,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 1,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   headerTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#414348',
-  },
-  menuIcon: {
-    fontSize: 34,
-  },
-  notificationIcon: {
-    width: 22,
-    height: 22,
-    resizeMode: 'contain',
+    fontSize: 20,
+    fontFamily: 'BeVietnamMedium',
+    color: '#000',
   },
   greeting: {
     fontSize: 24,
@@ -277,6 +238,10 @@ const styles = StyleSheet.create({
   locationText: {
     color: '#4C4C4C',
     fontSize: 18,
+    fontFamily: 'BeVietnamRegular',
+  },
+  activeLocationText: {
+    color: '#FFFFFF',
   },
   activitySection: {
     paddingHorizontal: 20,
@@ -326,13 +291,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontFamily: 'BeVietnamRegular',
   },
-  activityGraph: {
+  activityGraphContainer: {
     height: 120,
     backgroundColor: '#ffffff00',
-    borderRadius: 15,
-    borderWidth: 1,
-    textAlign: 'center',
-    borderColor: 'red',
   },
   bottomPadding: {
     height: 80,
@@ -397,7 +358,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContentContainer: {
-    paddingTop: 60, // Accounts for header height
+    paddingTop: 20,
   },
   gradient: {
     flexDirection: 'row',
@@ -411,21 +372,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0, 
   },
-  testButtonContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#F5F5F5',
-    borderRadius: 20,
-    marginLeft: 10,
-  },
-  testButton: {
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  testButtonText: {
-    fontSize: 18,
-    color: '#414348',
-    fontWeight: '600',
+  mainContent: {
+    flex: 1,
+    paddingBottom: 20,
   },
 });

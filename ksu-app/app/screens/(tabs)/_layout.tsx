@@ -16,11 +16,8 @@ const TabsLayout = () => {
         tabBarStyle: {
           backgroundColor: "#fff",
           borderTopWidth: 0,
-          elevation: 5, // for Android shadow
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: -2 },
-          shadowOpacity: 0.05,
-          shadowRadius: 10,
+          elevation: 0,
+          shadowColor: "transparent",
           height: 80,
           paddingBottom: 5,
           paddingTop: 20,
