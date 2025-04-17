@@ -25,6 +25,8 @@ const TabsLayout = () => {
           paddingBottom: 5,
           paddingTop: 20,
         },
+        tabBarInactiveTintColor: "black",
+        tabBarActiveTintColor: "black",
       }}
     >
       <Tabs.Screen
@@ -43,9 +45,9 @@ const TabsLayout = () => {
               {focused && (
                 <View
                   style={{
-                    width: 40,
-                    height: 3,
-                    backgroundColor: "#007AFF", // or any highlight color
+                    width: 50,
+                    height: 2,
+                    backgroundColor: "grey", // or any highlight color
                     borderRadius: 2,
                     marginTop: 1,
                   }}
@@ -68,9 +70,9 @@ const TabsLayout = () => {
               {focused && (
                 <View
                   style={{
-                    width: 40,
-                    height: 3,
-                    backgroundColor: "#007AFF", // or any highlight color
+                    width: 50,
+                    height: 2,
+                    backgroundColor: "grey", // or any highlight color
                     borderRadius: 2,
                     marginTop: 1,
                   }}
@@ -93,9 +95,9 @@ const TabsLayout = () => {
               {focused && (
                 <View
                   style={{
-                    width: 40,
-                    height: 3,
-                    backgroundColor: "#007AFF", // or any highlight color
+                    width: 50,
+                    height: 2,
+                    backgroundColor: "grey", // or any highlight color
                     borderRadius: 2,
                     marginTop: 1,
                   }}
@@ -118,9 +120,9 @@ const TabsLayout = () => {
               {focused && (
                 <View
                   style={{
-                    width: 40,
-                    height: 3,
-                    backgroundColor: "#007AFF", // or any highlight color
+                    width: 50,
+                    height: 2,
+                    backgroundColor: "grey", // or any highlight color
                     borderRadius: 2,
                     marginTop: 1,
                   }}
