@@ -31,7 +31,7 @@ const SignIn = () => {
             <View className="flex-1 items-start justify-center px-10 relative">
               {/* Top Right Image */}
               <Image
-                source={require("../../assets/images/dumbell.png")}
+                source={require("../../../assets/images/dumbell.png")}
                 className="absolute top-0 right-0 h-[180px] w-[180px]"
               />
 
@@ -64,7 +64,7 @@ const SignIn = () => {
                 </Text>
               </Pressable>
               <Image
-                source={require("../../assets/images/dumbell.png")}
+                source={require("../../../assets/images/dumbell.png")}
                 className="absolute -bottom-20 left-[-10%] h-[150px] w-[150px] z-[-1]"
               />
             </View>
