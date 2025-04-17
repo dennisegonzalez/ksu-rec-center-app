@@ -108,6 +108,8 @@ const styles = StyleSheet.create({
     marginTop: 4,
     textAlign: "center",
     width: "100%",
+    fontFamily: "BeVietnamThin",
+    color: "#9E9E9E",
   },
   indicator: {
     width: 50,

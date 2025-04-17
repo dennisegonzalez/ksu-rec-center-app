@@ -1,6 +1,7 @@
 /*
   Who is working on it: Hernan & Coki
 */
+import ActivityGraph from "../ActivityGraph";
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,12 +11,34 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {Link} from "expo-router";
 import { LinearGradient } from 'expo-linear-gradient';
 
 const Today = () => {
   const [selectedLocation, setSelectedLocation] = useState('Kennesaw');
+  const [currentTime, setCurrentTime] = useState(
+    new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+  );
+  const [studentCount, setStudentCount] = useState(0);
+  const [testMinutes, setTestMinutes] = useState((16 * 60 + 32) - (7 * 60)); // Start at 4:32 PM
+
+  const updateTestTime = (increment) => {
+    setTestMinutes(prev => {
+      const newMinutes = prev + increment;
+      const hour = Math.floor(newMinutes / 60) + 7;
+      const minute = newMinutes % 60;
+      setCurrentTime(new Date(2024, 0, 1, hour, minute).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
+      return newMinutes;
+    });
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   const renderActivityBox = () => (
     <View style={styles.activityBox}>
@@ -23,12 +46,15 @@ const Today = () => {
         <Text style={styles.activityTitle}>Current Activity</Text>
         <View style={styles.activityCountContainer}>
           <Text style={styles.activityCount}>
-            {selectedLocation === 'Kennesaw' ? '130' : '85'}
+            {studentCount}
           </Text>
           <Text style={styles.activityLabel}>students</Text>
+          <Text style={styles.currentTime}>
+            Current time: {currentTime}
+          </Text>
         </View>
       </View>
-      <Text style={styles.activityGraph}>Activity Graph</Text>
+      <ActivityGraph onCountUpdate={setStudentCount} testMinutes={testMinutes} />
     </View>
   );
 
@@ -74,26 +100,42 @@ const Today = () => {
           />
         </View>
 
-        {/* Location Tabs */}
-        <View style={styles.locationTabs}>
-          <TouchableOpacity 
-            style={[
-              styles.locationTab,
-              selectedLocation === 'Kennesaw' && styles.activeLocationTab
-            ]}
-            onPress={() => setSelectedLocation('Kennesaw')}
-          >
-            <Text style={styles.locationText}>Kennesaw</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={[
-              styles.locationTab,
-              selectedLocation === 'Marietta' && styles.activeLocationTab
-            ]}
-            onPress={() => setSelectedLocation('Marietta')}
-          >
-            <Text style={styles.locationText}>Marietta</Text>
-          </TouchableOpacity>
+        {/* Location Tabs and Test Buttons */}
+        <View style={styles.tabContainer}>
+          <View style={styles.locationTabs}>
+            <TouchableOpacity 
+              style={[
+                styles.locationTab,
+                selectedLocation === 'Kennesaw' && styles.activeLocationTab
+              ]}
+              onPress={() => setSelectedLocation('Kennesaw')}
+            >
+              <Text style={styles.locationText}>Kennesaw</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={[
+                styles.locationTab,
+                selectedLocation === 'Marietta' && styles.activeLocationTab
+              ]}
+              onPress={() => setSelectedLocation('Marietta')}
+            >
+              <Text style={styles.locationText}>Marietta</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.testButtonContainer}>
+            <TouchableOpacity 
+              style={styles.testButton}
+              onPress={() => updateTestTime(-1)}
+            >
+              <Text style={styles.testButtonText}>-</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.testButton}
+              onPress={() => updateTestTime(1)}
+            >
+              <Text style={styles.testButtonText}>+</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Current Activity */}
@@ -212,12 +254,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 25,
   },
-  locationTabs: {
+  tabContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 20,
     marginBottom: 10,
     marginTop: 20,
-    marginLeft: 18,
+  },
+  locationTabs: {
+    flexDirection: 'row',
+    flex: 1,
   },
   locationTab: {
     paddingHorizontal: 10,
@@ -274,10 +320,19 @@ const styles = StyleSheet.create({
     color: '#999999',
     fontFamily: 'BeVietnamRegular',
   },
+  currentTime: {
+    fontSize: 14,
+    color: '#FFBF00',
+    marginLeft: 10,
+    fontFamily: 'BeVietnamRegular',
+  },
   activityGraph: {
-    height: 100,
+    height: 120,
     backgroundColor: '#ffffff00',
     borderRadius: 15,
+    borderWidth: 1,
+    textAlign: 'center',
+    borderColor: 'red',
   },
   bottomPadding: {
     height: 80,
@@ -355,5 +410,22 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0, 
+  },
+  testButtonContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#F5F5F5',
+    borderRadius: 20,
+    marginLeft: 10,
+  },
+  testButton: {
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  testButtonText: {
+    fontSize: 18,
+    color: '#414348',
+    fontWeight: '600',
   },
 });
