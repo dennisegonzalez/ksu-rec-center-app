@@ -11,6 +11,7 @@ import {
   ScrollView,
   Image,
 } from "react-native";
+import ActivityGraph from "./ActivityGraph";
 import React, { useState } from "react";
 import {Link} from "expo-router";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -29,7 +30,7 @@ const Today = () => {
           <Text style={styles.activityLabel}>students</Text>
         </View>
       </View>
-      <View style={styles.activityGraph} />
+      <Text style={styles.activityGraph}>Activity Graph</Text>
     </View>
   );
 
