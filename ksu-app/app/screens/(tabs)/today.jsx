@@ -26,6 +26,66 @@ const Today = () => {
     Kennesaw: 0,
     Marietta: 0
   });
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const getDaysInMonth = (date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDay = firstDay.getDay() || 7; // Convert Sunday (0) to 7 for Monday start
+
+    const previousMonth = new Date(year, month, 0);
+    const daysInPreviousMonth = previousMonth.getDate();
+
+    const days = [];
+    
+    // Add days from previous month
+    for (let i = startingDay - 1; i > 0; i--) {
+      days.push({
+        day: daysInPreviousMonth - i + 1,
+        disabled: true,
+      });
+    }
+
+    // Add days of current month
+    for (let i = 1; i <= daysInMonth; i++) {
+      const dayDate = new Date(year, month, i);
+      days.push({
+        day: i,
+        active: dayDate.toDateString() === currentDate.toDateString(),
+      });
+    }
+
+    // Add only enough days to complete the last week that contains current month days
+    const totalDays = days.length;
+    const remainingDays = 7 - (totalDays % 7);
+    if (remainingDays < 7) {
+      for (let i = 1; i <= remainingDays; i++) {
+        days.push({
+          day: i,
+          disabled: true,
+        });
+      }
+    }
+
+    return days;
+  };
+
+  const handlePreviousMonth = () => {
+    setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1));
+  };
+
+  const handleNextMonth = () => {
+    setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1));
+  };
 
   const handleCountUpdate = (count) => {
     setStudentCounts(prev => ({
@@ -40,6 +100,12 @@ const Today = () => {
     }, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  const getCurrentDayName = () => {
+    const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const currentDay = currentDate.getDay();
+    return days[currentDay];
+  };
 
   const renderActivityBox = () => (
     <View style={styles.activityBox}>
@@ -64,16 +130,24 @@ const Today = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Fixed Header */}
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="menu" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Today</Text>
-        <Link href="/screens/notifications" asChild>
+      <View style={styles.headerContainer}>
+        <View style={styles.header}>
           <TouchableOpacity>
-            <Ionicons name="notifications" size={24} color="#000" />
+            <Ionicons name="menu" size={24} color="#000" />
           </TouchableOpacity>
-        </Link>
+          <Text style={styles.headerTitle}>Today</Text>
+          <Link href="/screens/notifications" asChild>
+            <TouchableOpacity>
+              <Ionicons name="notifications" size={24} color="#000" />
+            </TouchableOpacity>
+          </Link>
+        </View>
+        <LinearGradient
+          colors={['rgba(255,255,255,0.8)', 'rgba(255,255,255,0)']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+          style={styles.headerGradient}
+        />
       </View>
 
       <ScrollView 
@@ -129,44 +203,51 @@ const Today = () => {
           <View style={styles.calendarSection}>
             <Text style={styles.sectionTitle}>Scrappy Fit Calendar</Text>
             <View style={styles.calendarBox}>
-              <Text style={styles.placeholderText}>*Insert Calendar*</Text>
+              <View style={styles.calendarHeader}>
+                <TouchableOpacity onPress={handlePreviousMonth}>
+                  <Ionicons name="chevron-back" size={24} color="#000" />
+                </TouchableOpacity>
+                <Text style={styles.calendarTitle}>
+                  {months[selectedDate.getMonth()]} {selectedDate.getFullYear()}
+                </Text>
+                <TouchableOpacity onPress={handleNextMonth}>
+                  <Ionicons name="chevron-forward" size={24} color="#000" />
+                </TouchableOpacity>
+              </View>
+              
+              <View style={styles.weekDaysHeader}>
+                {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((day) => (
+                  <Text 
+                    key={day} 
+                    style={[
+                      styles.weekDayText,
+                      day !== getCurrentDayName() && styles.inactiveWeekDayText
+                    ]}
+                  >
+                    {day}
+                  </Text>
+                ))}
+              </View>
+
+              <View style={styles.calendarGrid}>
+                {getDaysInMonth(selectedDate).map((item, index) => (
+                  <View key={index} style={[
+                    styles.calendarDay,
+                    item.active && styles.activeDay,
+                    item.disabled && styles.disabledDay
+                  ]}>
+                    <Text style={[
+                      styles.calendarDayText,
+                      item.active && styles.activeDayText,
+                      item.disabled && styles.disabledDayText
+                    ]}>{item.day}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
           </View>
         </View>
       </ScrollView>
-
-      {/* Fixed Bottom Navigation */}
-      {/*<View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}>
-          <Image 
-            source={require('../../assets/images/Today.png')} 
-            style={styles.navIcon} 
-          />
-          <Text style={styles.navText}>Today</Text>
-          <View style={styles.activeIndicator} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Image 
-            source={require('../../assets/images/Map.png')} 
-            style={styles.navIcon} 
-          />
-          <Text style={styles.navText}>Map</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Image 
-            source={require('../../assets/images/Services.png')} 
-            style={styles.navIcon} 
-          />
-          <Text style={styles.navText}>Services</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Image 
-            source={require('../../assets/images/Profile.png')} 
-            style={styles.navIcon} 
-          />
-          <Text style={styles.navText}>Profile</Text>
-        </TouchableOpacity>
-      </View>*/}
     </SafeAreaView>
   );
 };
@@ -179,12 +260,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA',
     paddingTop: 0,
   },
+  headerContainer: {
+    position: 'relative',
+    
+  },
+  headerGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 10,
+    zIndex: 1,
   },
   headerTitle: {
     fontSize: 20,
@@ -298,61 +391,75 @@ const styles = StyleSheet.create({
   bottomPadding: {
     height: 80,
   },
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingTop: 15,
-    paddingBottom: 30,
-    borderTopWidth: 1,
-    borderTopColor: '#eeeeee',
-    backgroundColor: '#ffffff',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  navItem: {
-    alignItems: 'center',
-    position: 'relative',
-    paddingHorizontal: 15,
-    justifyContent: 'center',
-  },
-  navIcon: {
-    width: 22,
-    height: 22,
-    marginBottom: 5,
-    tintColor: '#000000',
-    resizeMode: 'contain',
-    alignSelf: 'center',
-  },
-  navText: {
-    fontSize: 12,
-    color: '#9E9E9E',
-    marginBottom: 3,
-  },
-  activeIndicator: {
-    position: 'absolute',
-    bottom: -5,
-    width: 45,
-    height: 3,
-    backgroundColor: '#999999',
-    borderRadius: 1.5,
-  },
   calendarSection: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     marginTop: 15,
+    marginBottom: 0,
   },
   calendarBox: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 15,
     padding: 20,
-    height: 300,
+  },
+  calendarHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  calendarTitle: {
+    fontSize: 18,
+    fontFamily: 'BeVietnamThin',
+    color: '#262626',
+  },
+  weekDaysHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  weekDayText: {
+    width: '14.28%',
+    textAlign: 'center',
+    fontSize: 12,
+    fontFamily: 'BeVietnamThin',
+    color: '#262626',
+  },
+  inactiveWeekDayText: {
+    opacity: 0.5,
+    color: '#A3A3A3',
+  },
+  calendarGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  calendarDay: {
+    width: '14.28%',
+    aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 0,
   },
-  placeholderText: {
+  calendarDayText: {
     fontSize: 16,
-    color: '#666666',
+    fontFamily: 'BeVietnamRegular',
+    color: '#000',
+  },
+  activeDay: {
+    backgroundColor: '#FFC629',
+    borderRadius: 20,
+  },
+  activeDayText: {
+    color: '#FFF',
+    fontFamily: 'BeVietnamMedium',
+  },
+  disabledDay: {
+    opacity: 0.3,
+  },
+  disabledDayText: {
+    color: '#999',
+  },
+  invisibleDay: {
+    opacity: 0,
   },
   scrollContent: {
     flex: 1,
@@ -374,6 +481,6 @@ const styles = StyleSheet.create({
   },
   mainContent: {
     flex: 1,
-    paddingBottom: 20,
+    paddingBottom: 10,
   },
 });

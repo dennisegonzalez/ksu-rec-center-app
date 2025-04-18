@@ -67,51 +67,6 @@ import {
 
         {/* Add padding at bottom to account for fixed navigation */}
         <View style={styles.bottomPadding} />
-
-        {/* Fixed Bottom Navigation */}
-        {/*<View style={styles.bottomNav}>
-          <TouchableOpacity 
-            style={styles.navItem}
-            onPress={() => router.push('/screens/today')}
-          >
-            <Image 
-              source={require('../../assets/images/Today.png')} 
-              style={styles.navIcon} 
-            />
-            <Text style={styles.navText}>Today</Text>
-            <View style={styles.activeIndicator} />
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.navItem}
-            onPress={() => router.push('/screens/map')}
-          >
-            <Image 
-              source={require('../../assets/images/Map.png')} 
-              style={styles.navIcon} 
-            />
-            <Text style={styles.navText}>Map</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.navItem}
-            onPress={() => router.push('/screens/services')}
-          >
-            <Image 
-              source={require('../../assets/images/Services.png')} 
-              style={styles.navIcon} 
-            />
-            <Text style={styles.navText}>Services</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.navItem}
-            onPress={() => router.push('/screens/profile')}
-          >
-            <Image 
-              source={require('../../assets/images/Profile.png')} 
-              style={styles.navIcon} 
-            />
-            <Text style={styles.navText}>Profile</Text>
-          </TouchableOpacity>
-        </View>*/}
       </SafeAreaView>
     );
   };
@@ -176,45 +131,5 @@ import {
     },
     bottomPadding: {
       height: 80,
-    },
-    bottomNav: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      paddingTop: 15,
-      paddingBottom: 30,
-      borderTopWidth: 1,
-      borderTopColor: '#eeeeee',
-      backgroundColor: '#ffffff',
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
-    navItem: {
-      alignItems: 'center',
-      position: 'relative',
-      paddingHorizontal: 15,
-      justifyContent: 'center',
-    },
-    navIcon: {
-      width: 22,
-      height: 22,
-      marginBottom: 5,
-      tintColor: '#000000',
-      resizeMode: 'contain',
-      alignSelf: 'center',
-    },
-    navText: {
-      fontSize: 12,
-      color: '#666666',
-      marginBottom: 3,
-    },
-    activeIndicator: {
-      position: 'absolute',
-      bottom: -5,
-      width: 45,
-      height: 3,
-      backgroundColor: '#999999',
-      borderRadius: 1.5,
     },
   });
