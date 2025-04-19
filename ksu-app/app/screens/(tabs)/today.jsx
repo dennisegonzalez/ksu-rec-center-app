@@ -231,11 +231,8 @@ const Today = () => {
 
               <View style={styles.calendarGrid}>
                 {getDaysInMonth(selectedDate).map((item, index) => (
-                  <View key={index} style={[
-                    styles.calendarDay,
-                    item.active && styles.activeDay,
-                    item.disabled && styles.disabledDay
-                  ]}>
+                  <View key={index} style={styles.calendarDay}>
+                    {item.active && <View style={styles.activeDay} />}
                     <Text style={[
                       styles.calendarDayText,
                       item.active && styles.activeDayText,
@@ -438,19 +435,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 0,
+    position: 'relative',
   },
   calendarDayText: {
     fontSize: 16,
     fontFamily: 'BeVietnamRegular',
     color: '#000',
+    textAlign: 'center',
+    zIndex: 1,
   },
   activeDay: {
+    position: 'absolute',
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: '#FFC629',
-    borderRadius: 20,
+    top: '50%',
+    left: '50%',
+    transform: [
+      { translateX: -18 },
+      { translateY: -18 }
+    ],
   },
   activeDayText: {
     color: '#FFF',
     fontFamily: 'BeVietnamMedium',
+    zIndex: 1,
   },
   disabledDay: {
     opacity: 0.3,

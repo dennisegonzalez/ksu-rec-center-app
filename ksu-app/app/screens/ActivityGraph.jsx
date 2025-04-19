@@ -11,18 +11,56 @@ import Svg, { Path, Circle, LinearGradient, Stop, Defs } from 'react-native-svg'
 // Location data outside component to prevent recreation
 const locationData = {
   Kennesaw: {
-    dataPoints: [15, 120, 85, 130, 95, 125, 130, 90, 40],
-    timeLabels: ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM', '11PM']
+    weekday: {
+      dataPoints: [15, 85, 95, 120, 130, 125, 115, 90, 40],
+      timeLabels: ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM', '11PM']
+    },
+    friday: {
+      dataPoints: [15, 85, 95, 120, 130, 125, 90, 40],
+      timeLabels: ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM']
+    },
+    saturday: {
+      dataPoints: [30, 75, 95, 85, 60, 40],
+      timeLabels: ['10AM', '12PM', '2PM', '4PM', '6PM', '8PM']
+    },
+    sunday: {
+      dataPoints: [20, 65, 85, 75, 50, 30],
+      timeLabels: ['12PM', '2PM', '4PM', '6PM', '7PM', '8PM']
+    }
   },
   Marietta: {
-    dataPoints: [5, 60, 45, 80, 55, 75, 85, 50, 20],
-    timeLabels: ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM', '11PM']
+    weekday: {
+      dataPoints: [5, 45, 55, 60, 80, 75, 85, 50, 20],
+      timeLabels: ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM', '11PM']
+    },
+    friday: {
+      dataPoints: [5, 45, 55, 60, 80, 75, 50, 20],
+      timeLabels: ['7AM', '9AM', '11AM', '1PM', '3PM', '5PM', '7PM', '9PM']
+    },
+    saturday: {
+      dataPoints: [15, 45, 65, 55, 40, 20],
+      timeLabels: ['10AM', '12PM', '2PM', '4PM', '6PM', '8PM']
+    },
+    sunday: {
+      dataPoints: [10, 35, 55, 45, 30, 15],
+      timeLabels: ['12PM', '2PM', '4PM', '6PM', '7PM', '8PM']
+    }
   }
 };
 
 const ActivityGraph = ({ onCountUpdate, location = 'Kennesaw' }) => {
-  // Get location data
-  const { dataPoints, timeLabels } = locationData[location];
+  // Get the current day and appropriate data
+  const getDayType = () => {
+    const day = new Date().getDay();
+    if (day === 0) return 'sunday';
+    if (day === 6) return 'saturday';
+    if (day === 5) return 'friday';
+    return 'weekday';
+  };
+
+  // Get location data based on day
+  const dayType = getDayType();
+  const { dataPoints, timeLabels } = locationData[location][dayType];
   const lastCountRef = useRef(null);
 
   // Function to convert time label to 24-hour format
@@ -45,12 +83,35 @@ const ActivityGraph = ({ onCountUpdate, location = 'Kennesaw' }) => {
     const now = new Date();
     const currentHour = now.getHours();
     const currentMinute = now.getMinutes();
-    const totalMinutes = (currentHour * 60 + currentMinute) - (7 * 60);
+    
+    // Get opening and closing hours based on day type
+    let openingHour, closingHour;
+    switch (dayType) {
+      case 'sunday':
+        openingHour = 12; // 12PM
+        closingHour = 20; // 8PM
+        break;
+      case 'saturday':
+        openingHour = 10; // 10AM
+        closingHour = 20; // 8PM
+        break;
+      case 'friday':
+        openingHour = 7; // 7AM
+        closingHour = 21; // 9PM
+        break;
+      default: // Monday-Thursday
+        openingHour = 7; // 7AM
+        closingHour = 23; // 11PM
+        break;
+    }
 
-    const isOpen = totalMinutes >= 0 && totalMinutes < 960;
+    const totalMinutes = (currentHour * 60 + currentMinute) - (openingHour * 60);
+    const operatingMinutes = (closingHour - openingHour) * 60;
+
+    const isOpen = currentHour >= openingHour && currentHour < closingHour;
     if (!isOpen) return { isOpen, count: 0, position: 0, activeLabelIndex: 0 };
 
-    const position = totalMinutes / 960 * (dataPoints.length - 1);
+    const position = totalMinutes / operatingMinutes * (dataPoints.length - 1);
     
     // Calculate student count
     const leftIndex = Math.floor(position);
@@ -65,7 +126,7 @@ const ActivityGraph = ({ onCountUpdate, location = 'Kennesaw' }) => {
     for (let i = 0; i < timeLabels.length; i++) {
       const labelHour = getHourFromLabel(timeLabels[i]);
       const nextLabel = timeLabels[i + 1];
-      const nextHour = nextLabel ? getHourFromLabel(nextLabel) : 23;
+      const nextHour = nextLabel ? getHourFromLabel(nextLabel) : closingHour;
       
       if (currentHour >= labelHour && currentHour < nextHour) {
         activeLabelIndex = i;
@@ -74,7 +135,7 @@ const ActivityGraph = ({ onCountUpdate, location = 'Kennesaw' }) => {
     }
 
     return { isOpen, count, position, activeLabelIndex };
-  }, [dataPoints, timeLabels, getHourFromLabel]);
+  }, [dataPoints, timeLabels, getHourFromLabel, dayType]);
 
   // Update count callback only when count actually changes
   useEffect(() => {
@@ -251,6 +312,39 @@ const styles = StyleSheet.create({
   },
   activeTimePeriod: {
     color: '#FFBF00',
+  },
+  calendarDay: {
+    width: '14.28%',
+    aspectRatio: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 0,
+    position: 'relative',
+  },
+  calendarDayText: {
+    fontSize: 16,
+    fontFamily: 'BeVietnamRegular',
+    color: '#000',
+    textAlign: 'center',
+    zIndex: 1,
+  },
+  activeDay: {
+    backgroundColor: '#FFC629',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [
+      { translateX: -12 },
+      { translateY: -12 }
+    ],
+  },
+  activeDayText: {
+    color: '#FFF',
+    fontFamily: 'BeVietnamMedium',
+    zIndex: 1,
   },
 });
 
