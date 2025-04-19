@@ -1,12 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const SquareCard = () => {
+const SquareCard = ({ eventName, quantity }) => {
   return (
     <View
       style={{
         justifyContent: "center",
-        alignItems: "center",
         backgroundColor: "white",
         borderRadius: 15,
         marginTop: 30,
@@ -19,10 +18,18 @@ const SquareCard = () => {
       }}
     >
       <View style={styles.box}></View>
-      <View style={{ paddingRight: 15 }}>
-        <Text style={{ fontSize: 14 }}>Special Events</Text>
+      <View
+        style={{
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          paddingLeft: 20,
+        }}
+      >
+        <Text style={{ fontSize: 14, textAlign: "left" }}>{eventName}</Text>
         <View style={{ flexDirection: "row", paddingTop: 5 }}>
-          <Text style={{ color: "black", fontWeight: "semibold" }}>6</Text>
+          <Text style={{ color: "black", fontWeight: "semibold" }}>
+            {quantity}
+          </Text>
           <Text style={{ color: "#FFC629", fontWeight: "semibold" }}>
             {" "}
             Available

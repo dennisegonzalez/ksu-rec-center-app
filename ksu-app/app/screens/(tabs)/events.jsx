@@ -21,6 +21,10 @@ const Calendar = () => {
   const data = [
     {
       id: 1,
+      eventName: "Yoga Class",
+      quantity: 2,
+      title: "Yoga Class",
+      price: 20,
     },
     {
       id: 2,
@@ -95,7 +99,9 @@ const Calendar = () => {
         data={data}
         horizontal={true}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <SquareCard />}
+        renderItem={({ item }) => (
+          <SquareCard eventName={item.eventName} quantity={item.quantity} />
+        )}
         showsHorizontalScrollIndicator={false}
       />
       <Text style={{ fontSize: 22, fontWeight: "bold", margin: 10 }}>
@@ -105,7 +111,9 @@ const Calendar = () => {
         data={data}
         horizontal={true}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <RectangleCard />}
+        renderItem={({ item }) => (
+          <RectangleCard title={item.title} price={item.price} />
+        )}
         showsHorizontalScrollIndicator={false}
       />
       <Pressable style={styles.button}>
