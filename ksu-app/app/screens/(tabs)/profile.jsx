@@ -120,39 +120,51 @@ const Profile = () => {
         </View>
 
         {/* Activity Section */}
-        <View style={styles.activityContainer}>
-          <TouchableOpacity style={styles.activityButton}>
-            <View style={styles.activityHeader}>
-              <Text style={styles.sectionTitle}>Activity</Text>
+        <View style={styles.settingsSection}>
+          <View style={styles.settingsContainer}>
+            <View style={[styles.settingRow, styles.sectionHeader]}>
+              <Text style={styles.settingsTitle}>Activity</Text>
             </View>
-            <View style={styles.appointmentRow}>
-              <Ionicons name="calendar-outline" size={24} color="#000" />
-              <Text style={styles.activityButtonText}>My Appointment</Text>
+            <TouchableOpacity style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <View style={styles.iconContainer}>
+                  <Ionicons name="calendar-outline" size={24} color="#000" />
+                </View>
+                <Text style={styles.settingText}>My Appointment</Text>
+              </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Account Settings */}
         <View style={styles.settingsSection}>
-          <Text style={styles.sectionTitle}>Account Settings</Text>
           <View style={styles.settingsContainer}>
+            <View style={[styles.settingRow, styles.sectionHeader]}>
+              <Text style={styles.settingsTitle}>Account Settings</Text>
+            </View>
             <View style={styles.settingRow}>
               <View style={styles.settingLeft}>
-                <Ionicons name="wallet-outline" size={24} color="#000" />
+                <View style={styles.iconContainer}>
+                  <Ionicons name="wallet-outline" size={24} color="#000" />
+                </View>
                 <Text style={styles.settingText}>PLACEHOLDER</Text>
               </View>
             </View>
             <View style={styles.settingRow}>
               <View style={styles.settingLeft}>
-                <Ionicons name="moon-outline" size={24} color="#000" />
+                <View style={styles.iconContainer}>
+                  <Ionicons name="moon-outline" size={24} color="#000" />
+                </View>
                 <Text style={styles.settingText}>Dark Mode</Text>
               </View>
               <Switch />
             </View>
             <TouchableOpacity style={styles.settingRow}>
               <View style={styles.settingLeft}>
-                <Ionicons name="log-out-outline" size={24} color="#FF3B30" />
+                <View style={styles.iconContainer}>
+                  <Ionicons name="log-out-outline" size={24} color="#FF3B30" />
+                </View>
                 <Text style={[styles.settingText, styles.logoutText]}>Logout</Text>
               </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
@@ -160,26 +172,50 @@ const Profile = () => {
           </View>
 
           {/* App Settings */}
-          <Text style={[styles.sectionTitle, styles.appSettingsTitle]}>App Settings</Text>
-          <View style={styles.settingsContainer}>
+          <View style={[styles.settingsContainer, styles.marginTop20]}>
+            <View style={[styles.settingRow, styles.sectionHeader]}>
+              <Text style={styles.settingsTitle}>App Settings</Text>
+            </View>
             <TouchableOpacity style={styles.settingRow}>
               <View style={styles.settingLeft}>
-                <Ionicons name="document-outline" size={24} color="#000" />
+                <View style={styles.iconContainer}>
+                  <Ionicons name="document-outline" size={24} color="#000" />
+                </View>
                 <Text style={styles.settingText}>PLACEHOLDER</Text>
               </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.settingRow}>
               <View style={styles.settingLeft}>
-                <Ionicons name="notifications-outline" size={24} color="#000" />
+                <View style={styles.iconContainer}>
+                  <Ionicons name="notifications" size={24} color="#000" />
+                </View>
                 <Text style={styles.settingText}>Notification</Text>
               </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.settingRow}>
               <View style={styles.settingLeft}>
-                <Ionicons name="checkmark-circle-outline" size={24} color="#000" />
+                <View style={styles.iconContainer}>
+                  <Ionicons name="checkmark-circle-outline" size={24} color="#000" />
+                </View>
                 <Text style={styles.settingText}>PLACEHOLDER</Text>
+              </View>
+              <Ionicons name="chevron-forward" size={24} color="#000" />
+            </TouchableOpacity>
+          </View>
+
+          {/* Support */}
+          <View style={[styles.settingsContainer, styles.marginTop20]}>
+            <View style={[styles.settingRow, styles.sectionHeader]}>
+              <Text style={styles.settingsTitle}>Support</Text>
+            </View>
+            <TouchableOpacity style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <View style={styles.iconContainer}>
+                  <Ionicons name="alert-circle-outline" size={24} color="#000" />
+                </View>
+                <Text style={styles.settingText}>Report Equipment Issue</Text>
               </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
             </TouchableOpacity>
@@ -310,8 +346,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   streakTitle: {
-    fontSize: 16,
-    fontFamily: 'BeVietnamMedium',
+    fontSize: 18,
+    fontFamily: 'BeVietnamThin',
     marginBottom: 15,
   },
   streakCircle: {
@@ -367,36 +403,6 @@ const styles = StyleSheet.create({
   activeDayText: {
     color: '#FFFFFF',
   },
-  activityContainer: {
-    paddingHorizontal: 20,
-    marginTop: 20,
-  },
-  activityButton: {
-    backgroundColor: '#FFFFFF',
-    padding: 15,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  activityHeader: {
-    marginBottom: 10,
-  },
-  appointmentRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  activityButtonText: {
-    flex: 1,
-    marginLeft: 15,
-    fontSize: 16,
-    fontFamily: 'BeVietnamRegular',
-  },
   settingsSection: {
     paddingHorizontal: 20,
     marginTop: 20,
@@ -404,8 +410,14 @@ const styles = StyleSheet.create({
   settingsContainer: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    marginTop: 10,
     paddingVertical: 8,
+  },
+  marginTop20: {
+    marginTop: 20,
+  },
+  sectionHeader: {
+    
+    paddingVertical: 6,
   },
   settingRow: {
     flexDirection: 'row',
@@ -419,6 +431,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
+  iconContainer: {
+    backgroundColor: '#FAFAFA',
+    width: 40,
+    height: 40,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   settingText: {
     marginLeft: 15,
     fontSize: 16,
@@ -427,9 +447,6 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     color: '#FF3B30',
-  },
-  appSettingsTitle: {
-    marginTop: 24,
   },
   modalOverlay: {
     flex: 1,
@@ -485,6 +502,11 @@ const styles = StyleSheet.create({
   },
   saveButtonText: {
     color: '#FFFFFF',
+  },
+  settingsTitle: {
+    fontSize: 18,
+    fontFamily: 'BeVietnamThin',
+    color: '#7A8499',
   },
 });
 

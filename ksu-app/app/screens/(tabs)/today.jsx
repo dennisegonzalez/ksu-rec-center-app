@@ -13,7 +13,6 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Link, useLocalSearchParams } from "expo-router";
-import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
 const Today = () => {
@@ -129,7 +128,6 @@ const Today = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Fixed Header */}
       <View style={styles.headerContainer}>
         <View style={styles.header}>
           <TouchableOpacity>
@@ -142,12 +140,6 @@ const Today = () => {
             </TouchableOpacity>
           </Link>
         </View>
-        <LinearGradient
-          colors={['rgba(255,255,255,0.8)', 'rgba(255,255,255,0)']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
-          style={styles.headerGradient}
-        />
       </View>
 
       <ScrollView 
@@ -155,7 +147,6 @@ const Today = () => {
         contentContainerStyle={styles.scrollContentContainer}
         showsVerticalScrollIndicator={false}
       >
-        {/* Main Content */}
         <View style={styles.mainContent}>
           {/* Greeting */}
           <Text style={styles.greeting}>Good Morning, {firstName || 'SHPE'} 👋</Text>
@@ -259,14 +250,11 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     position: 'relative',
-    
-  },
-  headerGradient: {
-    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
+    zIndex: 10,
+    backgroundColor: 'transparent',
   },
   header: {
     flexDirection: 'row',
@@ -275,6 +263,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     zIndex: 1,
+    backgroundColor: 'transparent',
   },
   headerTitle: {
     fontSize: 20,
