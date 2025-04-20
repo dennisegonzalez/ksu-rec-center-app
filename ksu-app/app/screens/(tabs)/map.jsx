@@ -2,20 +2,13 @@
   Who is working on it: ?? & ??
 */
 
-import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-  } from "react-native";
-  import React from "react";
-  const Calendar = () => {
-    return (
-      <SafeAreaView>
+import { SafeAreaView, StyleSheet, Text } from "react-native";
+import React from "react";
+import SquareCard from "../../../components/SquareCard";
+const Calendar = () => {
+  return <SafeAreaView></SafeAreaView>;
+};
 
-      </SafeAreaView>
-    );
-  };
-  
-  export default Calendar;
-  
-  const styles = StyleSheet.create({});
+export default Calendar;
+
+const styles = StyleSheet.create({});
