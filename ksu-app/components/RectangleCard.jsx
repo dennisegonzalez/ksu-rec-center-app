@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const RectangleCard = () => {
+const RectangleCard = ({ title, price }) => {
   return (
     <View
       style={{
@@ -19,8 +19,15 @@ const RectangleCard = () => {
     >
       <View style={styles.box}></View>
       <View style={{ paddingRight: 50 }}>
-        <Text style={{ fontSize: 14 }}>Special Events</Text>
-        <View style={{ flexDirection: "row", paddingTop: 10 }}>
+        <Text style={{ fontSize: 14 }}>{title}</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            paddingTop: 5,
+            paddingBottom: 5,
+            alignItems: "center",
+          }}
+        >
           <Text
             style={{
               color: "#FFC629",
@@ -29,7 +36,10 @@ const RectangleCard = () => {
           >
             $
           </Text>
-          <Text style={{ color: "black", fontWeight: "semibold" }}> 30</Text>
+          <Text style={{ color: "black", fontWeight: "semibold" }}>
+            {" "}
+            {price}
+          </Text>
         </View>
       </View>
     </View>
@@ -41,7 +51,7 @@ const styles = StyleSheet.create({
   box: {
     width: 140,
     height: 90,
-    backgroundColor: "grey",
+    backgroundColor: "#C4C4C4",
     borderRadius: 20,
     margin: 10,
   },

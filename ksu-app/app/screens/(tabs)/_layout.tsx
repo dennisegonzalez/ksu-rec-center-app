@@ -90,6 +90,13 @@ const TabsLayout = () => {
           tabBarLabel: () => null, // hide default label since we added custom one above
         }}
       />
+      <Tabs.Screen
+        name="cart"
+        options={{
+          href: null,
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 };
