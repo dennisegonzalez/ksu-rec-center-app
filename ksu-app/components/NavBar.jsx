@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+
     paddingTop: 12,
     paddingLeft: 20,
     paddingRight: 20,
@@ -48,5 +49,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    fontFamily: "BeVietnam",
   },
 });

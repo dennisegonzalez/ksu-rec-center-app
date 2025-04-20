@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import React from "react";
 import NavBar from "../../../components/NavBar";
-import CustomButton from "../../../components/CustomButton";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import SquareCard from "../../../components/SquareCard";
@@ -92,7 +91,7 @@ const Calendar = () => {
         leftRouteOrAction={() => router.back()}
         rightIconComponent={FontAwesome6}
         rightIcon="cart-shopping"
-        rightRouteOrAction={() => router.push("../cart")}
+        rightRouteOrAction={() => router.push("./cart")}
         title="Services"
       />
       <FlatList
