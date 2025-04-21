@@ -19,17 +19,20 @@ const TabsLayout = () => {
           elevation: 0,
           shadowColor: "transparent",
           height: 80,
-          paddingBottom: 5,
+          paddingBottom: 20,
           paddingTop: 20,
         },
         tabBarInactiveTintColor: "black",
         tabBarActiveTintColor: "black",
+        tabBarItemStyle: {
+          paddingBottom: 20,
+        },
       }}
     >
       <Tabs.Screen
         name="today"
         options={{
-          title: "Today",
+          title: "Todayyyy",
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => (
             <View style={styles.tabItem}>
