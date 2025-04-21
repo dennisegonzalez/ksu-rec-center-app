@@ -134,7 +134,7 @@ const Today = () => {
             <Ionicons name="menu" size={24} color="#000" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Today</Text>
-          <Link href="//notifications" asChild>
+          <Link href="/notifications" asChild>
             <TouchableOpacity>
               <Ionicons name="notifications" size={24} color="#000" />
             </TouchableOpacity>
