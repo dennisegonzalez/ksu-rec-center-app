@@ -11,9 +11,9 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import NavBar from "../../../components/NavBar";
+import NavBar from "../../components/NavBar";
 import { AntDesign, Feather, Octicons } from "@expo/vector-icons";
-import CalendarCard from "../../../components/CalendarCard";
+import CalendarCard from "../../components/CalendarCard";
 import { router } from "expo-router";
 const Calendar = () => {
   const calendarCards = [
