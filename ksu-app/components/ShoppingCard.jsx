@@ -1,45 +1,31 @@
 import {
   StyleSheet,
   Text,
-  Touchable,
   View,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
+
+const { width } = Dimensions.get("window");
 
 const ShoppingCard = ({ title, subtitle, price }) => {
   return (
     <View style={styles.container}>
       <View style={styles.box}></View>
-      <View style={{ justifyContent: "center" }}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "77%",
-          }}
-        >
-          <Text style={{ fontFamily: "BeVietnam" }}>{title}</Text>
+
+      <View style={styles.contentContainer}>
+        <View style={styles.headerRow}>
+          <Text style={styles.title}>{title}</Text>
           <TouchableOpacity onPress={() => console.log("Delete item")}>
             <Feather name="trash" size={22} color="#CCC5C2" />
           </TouchableOpacity>
         </View>
-        <Text style={{ fontFamily: "BeVietnam", color: "#98918F" }}>
-          {subtitle}
-        </Text>
-        <View style={{ width: "70%" }}>
-          <Text
-            style={{
-              fontFamily: "BeVietnam",
-              color: "#868686",
-              textAlign: "right",
-              fontSize: 20,
-            }}
-          >
-            $<Text>{price}</Text>
-          </Text>
-        </View>
+
+        <Text style={styles.subtitle}>{subtitle}</Text>
+
+        <Text style={styles.price}>${price}</Text>
       </View>
     </View>
   );
@@ -49,20 +35,47 @@ export default ShoppingCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: "95%",
+    width: width * 0.95,
     borderRadius: 15,
     backgroundColor: "white",
     flexDirection: "row",
-    alignContent: "center",
-    marginLeft: 7,
-    marginRight: 5,
+    alignItems: "center",
+    padding: 10,
     marginBottom: 20,
+    alignSelf: "center",
   },
   box: {
-    width: 110,
-    height: 90,
+    width: width * 0.25,
+    height: width * 0.25 * 0.8, // keep consistent ratio
     backgroundColor: "#C4C4C4",
     borderRadius: 20,
-    margin: 10,
+    marginRight: 10,
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  title: {
+    fontFamily: "BeVietnam",
+    fontSize: 16,
+    flexShrink: 1, // prevent long titles from pushing icon
+  },
+  subtitle: {
+    fontFamily: "BeVietnam",
+    color: "#98918F",
+    fontSize: 14,
+    marginTop: 4,
+  },
+  price: {
+    fontFamily: "BeVietnam",
+    color: "#868686",
+    fontSize: 18,
+    textAlign: "right",
+    marginTop: 8,
   },
 });
