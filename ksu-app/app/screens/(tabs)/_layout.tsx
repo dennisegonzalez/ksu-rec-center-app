@@ -91,6 +91,12 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
+        name="calendar"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
         name="cart"
         options={{
           href: null,

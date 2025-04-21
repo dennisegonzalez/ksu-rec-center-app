@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
@@ -115,16 +116,16 @@ const Calendar = () => {
         )}
         showsHorizontalScrollIndicator={false}
       />
-      <Pressable style={styles.button}>
+      <TouchableOpacity style={styles.button}>
         <Text style={{ color: "black", fontSize: 15 }}>
           Subscribe to Newsletter
         </Text>
-      </Pressable>
-      <Pressable style={styles.smbutton}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.smbutton}>
         <Text style={{ color: "black", fontSize: 15 }}>
           Activity Registration
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

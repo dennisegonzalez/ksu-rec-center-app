@@ -34,7 +34,26 @@ const Cart = () => {
       price: 20,
     },
   ];
-  const paidEvents = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12]; // Replace with actual paid events data
+  const paidEvents = [
+    {
+      id: 1,
+      title: "Yoga Class",
+      subtitle: "Yoga Class",
+      price: 20,
+    },
+    {
+      id: 2,
+      title: "Yoga Class",
+      subtitle: "Yoga Class",
+      price: 20,
+    },
+    {
+      id: 3,
+      title: "Yoga Class",
+      subtitle: "Yoga Class",
+      price: 20,
+    },
+  ]; // Replace with actual paid events data
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FAFAFA" }}>
       <NavBar
@@ -51,10 +70,10 @@ const Cart = () => {
           <Text style={styles.subtext}>{numberOfItems} items</Text>
         </View>
 
-        <View>
+        <View style={{}}>
           {cartItems.map((item) => (
             <ShoppingCard
-              key={item}
+              key={item.id}
               title={item.title}
               subtitle={item.subtitle}
               price={item.price}
@@ -68,7 +87,12 @@ const Cart = () => {
         </View>
         <View>
           {paidEvents.map((item) => (
-            <ShoppingCard key={item} />
+            <ShoppingCard
+              key={item.id}
+              title={item.title}
+              subtitle={item.subtitle}
+              price={item.price}
+            />
           ))}
         </View>
       </ScrollView>
