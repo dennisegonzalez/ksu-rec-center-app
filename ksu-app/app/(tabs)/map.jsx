@@ -4,7 +4,7 @@
 
 import { SafeAreaView, StyleSheet, Text } from "react-native";
 import React from "react";
-import SquareCard from "../../../components/SquareCard";
+import SquareCard from "../../components/SquareCard";
 const Calendar = () => {
   return <SafeAreaView></SafeAreaView>;
 };

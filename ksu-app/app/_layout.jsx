@@ -2,21 +2,22 @@ import { SplashScreen, Stack } from "expo-router";
 import "../global.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import GestureHandlerLayout from "./GestureHandlerLayout";
+import { enableLayoutAnimations } from "react-native-reanimated";
+
 SplashScreen.preventAutoHideAsync();
+enableLayoutAnimations(true);
+
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     BeVietnam: require("../assets/fonts/BeVietnam-Regular.ttf"),
     BeVietnamBold: require("../assets/fonts/BeVietnam-Bold.ttf"),
-
     BeVietnamLight: require("../assets/fonts/BeVietnam-Light.ttf"),
-
     BeVietnamMedium: require("../assets/fonts/BeVietnam-Medium.ttf"),
-
     BeVietnamSemiBold: require("../assets/fonts/BeVietnam-SemiBold.ttf"),
-
     BeVietnamExtraBold: require("../assets/fonts/BeVietnam-ExtraBold.ttf"),
   });
+
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
@@ -25,20 +26,19 @@ export default function RootLayout() {
   if (!loaded && !error) {
     return null;
   }
+
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#FAFAFA" }}>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <GestureHandlerLayout>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </GestureHandlerLayout>
   );
 }

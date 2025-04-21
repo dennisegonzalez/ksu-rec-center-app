@@ -7,10 +7,10 @@ import {
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import NavBar from "../../../components/NavBar";
+import NavBar from "../../components/NavBar";
 import { AntDesign, Octicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import ShoppingCard from "../../../components/ShoppingCard";
+import ShoppingCard from "../../components/ShoppingCard";
 
 const Cart = () => {
   const numberOfItems = 3; // Replace with actual number of items in the cart

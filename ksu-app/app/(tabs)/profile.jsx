@@ -57,7 +57,7 @@ const Profile = () => {
           <Ionicons name="menu" size={24} color="#000" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Owl Profile</Text>
-        <TouchableOpacity onPress={() => router.push('/screens/notifications')}>
+        <TouchableOpacity onPress={() => router.push('/notifications')}>
           <Ionicons name="notifications" size={24} color="#000" />
         </TouchableOpacity>
       </View>

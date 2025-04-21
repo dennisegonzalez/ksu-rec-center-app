@@ -1,7 +1,7 @@
 /*
   Who is working on it: Hernan & Coki
 */
-import ActivityGraph from "../ActivityGraph";
+import ActivityGraph from "../../components/ActivityGraph";
 import {
   SafeAreaView,
   StyleSheet,
@@ -134,7 +134,7 @@ const Today = () => {
             <Ionicons name="menu" size={24} color="#000" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Today</Text>
-          <Link href="/screens/notifications" asChild>
+          <Link href="/notifications" asChild>
             <TouchableOpacity>
               <Ionicons name="notifications" size={24} color="#000" />
             </TouchableOpacity>
@@ -155,7 +155,7 @@ const Today = () => {
           <View style={styles.eventsSection}>
             <Text style={styles.sectionTitle}>Events For You</Text>
             <Image 
-              source={require('../../../assets/images/EventsToday.png')}
+              source={require('../../assets/images/EventsToday.png')}
               style={styles.eventCard}
               resizeMode="cover"
             />
