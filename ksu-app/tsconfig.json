@@ -1,22 +1,11 @@
 {
+  "compilerOptions": {},
   "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": true,
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "app/+not-found.jsx",
-    "app/index.jsx",
-    "app/_layout.jsx",
-    "nativewind-env.d.ts",
-    "components/InputField.jsx",
-    "components/ExerciseCard.jsx",
-    "components/ExerciseCard.isx"
+    "nativewind-env.d.ts"
   ]
 }
