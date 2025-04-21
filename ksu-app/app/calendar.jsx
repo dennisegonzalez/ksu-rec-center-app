@@ -11,7 +11,12 @@ import {
   const Calendar = () => {
     return (
       <SafeAreaView>
-
+        <Text
+          className="text-xl text-gray-400 pb-5"
+          style={{ fontFamily: "BeVietnam" }}
+        >
+          Please sign in to continue.
+        </Text>
       </SafeAreaView>
     );
   };

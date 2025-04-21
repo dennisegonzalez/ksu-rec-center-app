@@ -2,7 +2,13 @@ import { SplashScreen, Stack } from "expo-router";
 import "../global.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import GestureHandlerLayout from "./GestureHandlerLayout";
+import { enableLayoutAnimations } from 'react-native-reanimated';
+
+
 SplashScreen.preventAutoHideAsync();
+enableLayoutAnimations(true);
+
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     BeVietnam: require("../assets/fonts/BeVietnam-Regular.ttf"),
@@ -21,17 +27,19 @@ export default function RootLayout() {
   if (!loaded && !error) {
     return null;
   }
-  
+
   return (
-    <Stack
+    <GestureHandlerLayout>
+      <Stack
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </GestureHandlerLayout>
   );
 }
