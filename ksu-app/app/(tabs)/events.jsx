@@ -99,7 +99,9 @@ const Calendar = () => {
         horizontal={true}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <SquareCard eventName={item.eventName} quantity={item.quantity} />
+          <Pressable onPress={() => router.push("../service-category")}>
+            <SquareCard eventName={item.eventName} quantity={item.quantity} />
+          </Pressable>
         )}
         showsHorizontalScrollIndicator={false}
       />
