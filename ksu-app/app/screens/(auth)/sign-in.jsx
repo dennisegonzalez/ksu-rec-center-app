@@ -40,7 +40,8 @@ const SignIn = () => {
               <View className="px-4 py-3">
                 <Text
                   className="text-5xl pb-2"
-                  style={{ fontFamily: "BeVietnamBold" }}
+                  style={{ fontFamily: "BeVietnamSemiBold",paddingTop: 3,
+                  }}
                 >
                   Login
                 </Text>
