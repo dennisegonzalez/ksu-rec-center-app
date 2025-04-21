@@ -51,6 +51,7 @@ const Calendar = () => {
         leftRouteOrAction={() => router.back()}
         rightIconComponent={Octicons}
         rightIcon={"bell-fill"}
+        rightRouteOrAction={() => router.push("/notifications")}
       />
       <ScrollView>
         <View>
@@ -76,6 +77,7 @@ const Calendar = () => {
             <TextInput
               placeholder="Search events"
               style={{
+                paddingLeft: 10,
                 fontSize: 18,
                 fontFamily: "BeVietnam",
                 color: "rgb(153,153,153)",

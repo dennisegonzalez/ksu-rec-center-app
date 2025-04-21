@@ -16,7 +16,9 @@ const CalendarCard = ({ title, time, duration, location }) => {
         alignSelf: "center",
       }}
     >
-      <Text style={{ fontSize: 20, fontFamily: "BeVietnamSemiBold" }}>
+
+      <View style = {{paddingHorizontal: 15, paddingVertical: 10}}>
+        <Text style={{ fontSize: 20, fontFamily: "BeVietnamMedium" }}>
         {title}
       </Text>
       <Text
@@ -26,6 +28,7 @@ const CalendarCard = ({ title, time, duration, location }) => {
           textAlign: "right",
           paddingRight: 10,
           paddingTop: 10,
+          fontSize: 16,
         }}
       >
         {time}
@@ -99,6 +102,7 @@ const CalendarCard = ({ title, time, duration, location }) => {
             ></View>
           );
         })}
+      </View>
       </View>
     </SafeAreaView>
   );
