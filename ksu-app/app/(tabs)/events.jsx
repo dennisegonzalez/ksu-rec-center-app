@@ -11,11 +11,11 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import NavBar from "../../../components/NavBar";
+import NavBar from "../../components/NavBar";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import SquareCard from "../../../components/SquareCard";
-import RectangleCard from "../../../components/RectangleCard";
+import SquareCard from "../../components/SquareCard";
+import RectangleCard from "../../components/RectangleCard";
 const Calendar = () => {
   const data = [
     {

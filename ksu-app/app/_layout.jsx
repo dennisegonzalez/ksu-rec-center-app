@@ -7,15 +7,12 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     BeVietnam: require("../assets/fonts/BeVietnam-Regular.ttf"),
     BeVietnamBold: require("../assets/fonts/BeVietnam-Bold.ttf"),
-
     BeVietnamLight: require("../assets/fonts/BeVietnam-Light.ttf"),
-
     BeVietnamMedium: require("../assets/fonts/BeVietnam-Medium.ttf"),
-
     BeVietnamSemiBold: require("../assets/fonts/BeVietnam-SemiBold.ttf"),
-
     BeVietnamExtraBold: require("../assets/fonts/BeVietnam-ExtraBold.ttf"),
   });
+
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
@@ -24,6 +21,7 @@ export default function RootLayout() {
   if (!loaded && !error) {
     return null;
   }
+  
   return (
     <Stack
       screenOptions={{
