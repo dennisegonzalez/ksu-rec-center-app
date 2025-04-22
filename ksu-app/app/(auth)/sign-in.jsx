@@ -61,7 +61,7 @@ const SignIn = () => {
               <Pressable
                 className="bg-[rgba(255,198,41,0.75)] px-4 w-[95%] py-3 rounded-xl"
                 onPress={() => {
-                  router.push("/today");
+                  router.push("/onboardingscreen");
                   console.log("Login Button Pressed");
                 }}
               >
