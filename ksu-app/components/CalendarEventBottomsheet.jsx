@@ -50,6 +50,9 @@ const EventDetailsSheet = React.forwardRef(({ event, onClose }, ref) => {
             <View style={styles.locationTag}>
               <Text style={styles.locationTagText}>{event?.location}</Text>
             </View>
+            <View style={styles.timeTag}>
+                <Text style={styles.timeTagText}>Free</Text>
+            </View>
           </View>
 
           <Text style={styles.sectionTitle}>About Event</Text>
@@ -64,7 +67,7 @@ const EventDetailsSheet = React.forwardRef(({ event, onClose }, ref) => {
 
         <View style={styles.bottomContainer}>
           <TouchableOpacity style={styles.signUpButton} onPress={() => console.log('Sign up pressed')}>
-            <Text style={styles.signUpText}>Sign Up</Text>
+            <Text style={styles.signUpText}>Add to Cart</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -5,14 +5,13 @@ import {FontAwesome6, Ionicons } from '@expo/vector-icons';
 import NavBar from "../components/NavBar";
 import { router } from "expo-router";
 import EventDetails from './event-details';
+import { Image } from "react-native";
 
 const services = [
-  { id: 1, name: 'NASM CPT Prep', price: 750.0 },
-  { id: 2, name: 'Fitness Foundation', price: 35.0 },
-  { id: 3, name: 'Virtual Guts & Butts', price: 0.0 },
-  { id: 4, name: 'Virtual Power Pilat.', price: 0.0 },
-  { id: 5, name: 'Virtual R. Yin Yoga', price: 0.0 },
-  { id: 6, name: 'Virtual Vinyasa Yoga', price: 0.0 },
+  { id: 2, name: 'Virtual Guts & Butts', price: 0.0, source: require("../assets/images/b&gutts.png") },
+  { id: 3, name: 'Fitness Foundation', price: 35.0, source: require("../assets/images/owlfit.png") },
+  { id: 4, name: 'Virtual Power Pilat.', price: 0.0, source: require("../assets/images/pilates.png") },
+  { id: 6, name: 'Virtual Vinyasa Yoga', price: 0.0, source: require("../assets/images/yoga.png") },
 ];
 
 const ServiceCategory = () => {
@@ -40,7 +39,7 @@ const ServiceCategory = () => {
             style={styles.card}
             onPress={() => handleCardPress(service.id)}
           >
-            <View style={styles.imagePlaceholder}></View>
+            <Image source={service.source} style={styles.imagePlaceholder} />
             <View style={styles.cardContent}>
               <Text style={styles.serviceName}>{service.name}</Text>
               <Text style={styles.price}>
@@ -74,7 +73,7 @@ const ServiceCategory = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EDF1F7',
+    backgroundColor: '#FAFAFA',
   },
   header: {
     flexDirection: 'row',

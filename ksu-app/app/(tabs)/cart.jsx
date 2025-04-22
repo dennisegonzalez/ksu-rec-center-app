@@ -63,6 +63,7 @@ const Cart = () => {
         leftRouteOrAction={() => router.back()}
         rightIcon={"bell-fill"}
         rightIconComponent={Octicons}
+        rightRouteOrAction="/notifications"
       />
       <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
         <View style={styles.header}>

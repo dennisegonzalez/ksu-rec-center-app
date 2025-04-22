@@ -22,12 +22,14 @@ import {
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
+import NavBar from "../../components/NavBar";
+import { Octicons } from "@expo/vector-icons";
 
 const Profile = () => {
   const { firstName: initialFirstName } = useLocalSearchParams();
   const [isModalVisible, setModalVisible] = useState(false);
   const [firstName, setFirstName] = useState(initialFirstName || "SHPE");
-  const [lastName, setLastName] = useState("Smith");
+  const [lastName, setLastName] = useState("Coders");
   const [tempFirstName, setTempFirstName] = useState("");
   const [tempLastName, setTempLastName] = useState("");
 
@@ -52,15 +54,12 @@ const Profile = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Header - Keep outside ScrollView */}
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="menu" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Owl Profile</Text>
-        <TouchableOpacity onPress={() => router.push('/notifications')}>
-          <Ionicons name="notifications" size={24} color="#000" />
-        </TouchableOpacity>
-      </View>
+      <NavBar
+        title="Profile"
+        rightIcon={"bell-fill"}
+        rightIconComponent={Octicons}
+        rightRouteOrAction="/notifications"
+      />
 
       <ScrollView 
         style={styles.scrollContainer}
@@ -70,7 +69,7 @@ const Profile = () => {
         {/* Profile Info */}
         <View style={styles.profileSection}>
           <View style={styles.profileImageContainer}>
-            <View style={styles.profileImage} />
+            <Image source={require("../../assets/images/shpe-logo.png")} style={styles.profileImage} />
           </View>
           <View style={styles.nameContainer}>
             <Text style={styles.nameText}>{firstName}</Text>
@@ -85,12 +84,16 @@ const Profile = () => {
         <View style={styles.streakContainer}>
           <View style={styles.streakBox}>
             <Text style={styles.streakTitle}>Current Streak</Text>
-            <View style={styles.streakCircle} />
+            <View style={styles.streakCircle}>
+              <Text style={styles.streakNumber}>4</Text>
+            </View>
           </View>
           <View style={styles.streakDivider} />
           <View style={styles.streakBox}>
             <Text style={styles.streakTitle}>Best Streak</Text>
-            <View style={styles.streakCircle} />
+            <View style={styles.streakCircle}>
+              <Text style={styles.streakNumber}>7</Text>
+            </View>
           </View>
         </View>
 
@@ -130,7 +133,7 @@ const Profile = () => {
                 <View style={styles.iconContainer}>
                   <Ionicons name="calendar-outline" size={24} color="#000" />
                 </View>
-                <Text style={styles.settingText}>My Appointment</Text>
+                <Text style={styles.settingText}>My Appointments</Text>
               </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
             </TouchableOpacity>
@@ -345,6 +348,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  streakNumber: {
+    fontSize: 24,
+    fontFamily: 'BeVietnamMedium',
+    color: '#000',
+  },
   streakTitle: {
     fontSize: 18,
     fontFamily: 'BeVietnamThin',
@@ -355,6 +363,8 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     backgroundColor: '#E5E5E5',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   streakDivider: {
     width: 1,

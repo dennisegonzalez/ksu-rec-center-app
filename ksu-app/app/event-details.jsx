@@ -2,6 +2,7 @@ import React, { useMemo, useCallback, useState, useRef, useEffect } from 'react'
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { LinearGradient } from 'expo-linear-gradient';
+import { router } from "expo-router";
 
 export default function EventDetails({ isVisible, onClose }) {
   const bottomSheetRef = useRef(null);
@@ -129,8 +130,8 @@ export default function EventDetails({ isVisible, onClose }) {
             style={styles.signUpContainer}
             pointerEvents="box-none"
           >
-            <TouchableOpacity style={styles.signUpButton}>
-              <Text style={styles.signUpText}>Sign Up / Save</Text>
+            <TouchableOpacity style={styles.signUpButton} onPress={() => router.push("/calendar")}>
+              <Text style={styles.signUpText}>View Calendar Schedule</Text>
             </TouchableOpacity>
           </LinearGradient>
         </View>

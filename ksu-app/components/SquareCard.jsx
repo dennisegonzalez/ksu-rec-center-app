@@ -1,23 +1,25 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { Image } from "react-native";
 
-const SquareCard = ({ eventName, quantity }) => {
+const SquareCard = ({ eventName, quantity, sourceSquare }) => {
   return (
     <View
       style={{
         justifyContent: "center",
         backgroundColor: "white",
         borderRadius: 15,
-        marginTop: 30,
-        marginBottom: 30,
-        marginLeft: 5,
-        marginRight: 5,
-        paddingBottom: 45,
-        paddingTop: 35,
-        height: "auto",
+        marginTop: 10,
+        marginBottom: 10,
+        marginRight: 15,
+        paddingBottom: 10,
+        paddingTop: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
+
       }}
     >
-      <View style={styles.box}></View>
+      <Image source={sourceSquare} style={styles.box} />
       <View
         style={{
           flexDirection: "column",
@@ -44,8 +46,8 @@ export default SquareCard;
 
 const styles = StyleSheet.create({
   box: {
-    width: 120,
-    height: 120,
+    width: 149,
+    height: 140,
     backgroundColor: "#C4C4C4",
     borderRadius: 15,
     margin: 10,
