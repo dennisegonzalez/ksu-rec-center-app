@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     backgroundColor: "transparent",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   title: {
     fontSize: 20,

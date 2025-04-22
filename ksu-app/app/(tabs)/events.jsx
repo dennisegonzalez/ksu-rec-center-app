@@ -6,6 +6,7 @@ import {
   FlatList,
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -58,6 +59,7 @@ const Calendar = () => {
         rightIcon="cart-shopping"
         rightRouteOrAction="/cart"
       />
+      <ScrollView>
       <Text style={{ fontSize: 25, fontWeight: "bold", margin: 10, marginTop: 20, marginLeft: 25 }}>
         KSU Services
       </Text>
@@ -95,6 +97,7 @@ const Calendar = () => {
         </Text>
       </TouchableOpacity>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

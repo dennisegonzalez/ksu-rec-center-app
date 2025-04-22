@@ -130,6 +130,7 @@ const Today = () => {
   return (
     <SafeAreaView style={styles.container}>
       <NavBar
+        
         rightIconComponent={Ionicons}
         rightIcon="notifications"
         rightRouteOrAction={() => router.push("/notifications")}
