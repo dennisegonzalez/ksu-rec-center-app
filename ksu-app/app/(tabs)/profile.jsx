@@ -148,7 +148,7 @@ const Profile = () => {
                 <View style={styles.iconContainer}>
                   <Ionicons name="wallet-outline" size={24} color="#000" />
                 </View>
-                <Text style={styles.settingText}>PLACEHOLDER</Text>
+                <Text style={styles.settingText}>My Wallet</Text>
               </View>
             </View>
             <View style={styles.settingRow}>
@@ -181,7 +181,7 @@ const Profile = () => {
                 <View style={styles.iconContainer}>
                   <Ionicons name="document-outline" size={24} color="#000" />
                 </View>
-                <Text style={styles.settingText}>PLACEHOLDER</Text>
+                <Text style={styles.settingText}>My Documents</Text>
               </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
             </TouchableOpacity>
@@ -190,7 +190,7 @@ const Profile = () => {
                 <View style={styles.iconContainer}>
                   <Ionicons name="notifications" size={24} color="#000" />
                 </View>
-                <Text style={styles.settingText}>Notification</Text>
+                <Text style={styles.settingText}>Notifications</Text>
               </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
             </TouchableOpacity>
@@ -199,7 +199,7 @@ const Profile = () => {
                 <View style={styles.iconContainer}>
                   <Ionicons name="checkmark-circle-outline" size={24} color="#000" />
                 </View>
-                <Text style={styles.settingText}>PLACEHOLDER</Text>
+                <Text style={styles.settingText}>Profile Setup</Text>
               </View>
               <Ionicons name="chevron-forward" size={24} color="#000" />
             </TouchableOpacity>

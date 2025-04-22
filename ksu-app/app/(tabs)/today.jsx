@@ -12,7 +12,7 @@ import {
   Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { Link, useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams, router } from "expo-router";
 import { Ionicons } from '@expo/vector-icons';
 
 const Today = () => {
@@ -223,12 +223,23 @@ const Today = () => {
               <View style={styles.calendarGrid}>
                 {getDaysInMonth(selectedDate).map((item, index) => (
                   <View key={index} style={styles.calendarDay}>
-                    {item.active && <View style={styles.activeDay} />}
-                    <Text style={[
-                      styles.calendarDayText,
-                      item.active && styles.activeDayText,
-                      item.disabled && styles.disabledDayText
-                    ]}>{item.day}</Text>
+                    {item.active ? (
+                      <TouchableOpacity 
+                        style={styles.activeDayTouchable}
+                        onPress={() => router.push("/(tabs)/calendar")}
+                      >
+                        <View style={styles.activeDay} />
+                        <Text style={[
+                          styles.calendarDayText,
+                          styles.activeDayText
+                        ]}>{item.day}</Text>
+                      </TouchableOpacity>
+                    ) : (
+                      <Text style={[
+                        styles.calendarDayText,
+                        item.disabled && styles.disabledDayText
+                      ]}>{item.day}</Text>
+                    )}
                   </View>
                 ))}
               </View>
@@ -481,5 +492,11 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 1,
     paddingBottom: 10,
+  },
+  activeDayTouchable: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

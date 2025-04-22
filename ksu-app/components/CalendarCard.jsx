@@ -17,7 +17,7 @@ const CalendarCard = ({ title, time, duration, location }) => {
       }}
     >
 
-      <View style = {{paddingHorizontal: 15, paddingVertical: 10}}>
+      <View style = {{paddingHorizontal: 20, paddingVertical: 10}}>
         <Text style={{ fontSize: 20, fontFamily: "BeVietnamMedium" }}>
         {title}
       </Text>
@@ -27,8 +27,8 @@ const CalendarCard = ({ title, time, duration, location }) => {
           fontFamily: "BeVietnam",
           textAlign: "right",
           paddingRight: 10,
-          paddingTop: 10,
-          fontSize: 16,
+          paddingTop: 8,
+          fontSize: 18,
         }}
       >
         {time}
@@ -89,9 +89,10 @@ const CalendarCard = ({ title, time, duration, location }) => {
         }}
       />
       <View style={{ flexDirection: "row", paddingTop: 20 }}>
-        {squares.map(() => {
+        {squares.map((square, index) => {
           return (
             <View
+              key={index}
               style={{
                 width: 15,
                 height: 15,
