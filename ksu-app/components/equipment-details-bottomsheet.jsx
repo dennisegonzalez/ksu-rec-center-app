@@ -2,9 +2,8 @@ import React, { useMemo, useCallback, useState, useRef, useEffect } from 'react'
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { LinearGradient } from 'expo-linear-gradient';
-import { router } from "expo-router";
 
-export default function EventDetails({ isVisible, onClose }) {
+export default function EquipmentDetails({ isVisible, onClose }) {
   const bottomSheetRef = useRef(null);
   const snapPoints = useMemo(() => ['65%', '90%'], []);
   const [isOpen, setIsOpen] = useState(false);
@@ -44,37 +43,6 @@ export default function EventDetails({ isVisible, onClose }) {
     return null;
   }
 
-  const tags = ['Kettlebells', 'Dumbbells', 'Mats', 'Jump Ropes'];
-
-  const renderTags = () => (
-    <View style={styles.tagsContainer}>
-      {tags.map((tag, index) => (
-        <View key={index} style={styles.tag}>
-          <Text style={styles.tagText}>{tag}</Text>
-        </View>
-      ))}
-    </View>
-  );
-
-  const previewItems = [
-    { title: "Hip Thrusts", reps: "8 reps" },
-    { title: "Goblet Squats", reps: "10 reps" },
-    { title: "Crunches", time: "05:00" },
-    { title: "Sign up to see more!", time: "" },
-  ];
-
-  const renderPreviewItem = (item, index) => (
-    <View key={index} style={styles.exerciseItem}>
-      <View style={styles.exerciseLeft}>
-        <View style={styles.exerciseImageContainer}>
-          <View style={styles.exerciseImage} />
-        </View>
-        <Text style={styles.exerciseName}>{item.title}</Text>
-      </View>
-      <Text style={styles.exerciseReps}>{item.reps || item.time}</Text>
-    </View>
-  );
-
   return (
     <View style={StyleSheet.absoluteFillObject} pointerEvents="box-none">
       <BottomSheet
@@ -94,35 +62,8 @@ export default function EventDetails({ isVisible, onClose }) {
             showsVerticalScrollIndicator={false}
           >
             <View style={styles.headerContainer}>
-              <Text style={styles.title}>Virtual Butts & Guts</Text>
-              <View style={styles.ratingContainer}>
-                <Text style={styles.rating}>4.8</Text>
-                <Text style={styles.ratingStar}>★</Text>
-              </View>
+              <Text style={styles.title}>Test! Equipment Details</Text>
             </View>
-            <Text style={styles.instructor}>By Carla Thompson</Text>
-            
-            <View style={styles.classInfo}>
-              <View style={styles.infoRow}>
-                <Text style={styles.infoText}>Studio 3</Text>
-                <Text style={styles.infoSeparator}>·</Text>
-                <Text style={styles.infoText}>Virtual</Text>
-                <Text style={styles.infoSeparator}>·</Text>
-                <Text style={styles.infoText}>45 Mins</Text>
-              </View>
-            </View>
-
-            <Text style={styles.description}>
-              This class concentrates highly on the abdominals, lower back, and lower body, this challenging but fun workout is for all fitness levels. Class link will be provided.
-            </Text>
-
-            {renderTags()}
-
-            <Text style={styles.sectionTitle}>Preview</Text>
-            
-            {previewItems.map((item, index) => renderPreviewItem(item, index))}
-            
-            <View style={styles.bottomPadding} />
           </ScrollView>
 
           <LinearGradient
@@ -130,8 +71,8 @@ export default function EventDetails({ isVisible, onClose }) {
             style={styles.signUpContainer}
             pointerEvents="box-none"
           >
-            <TouchableOpacity style={styles.signUpButton} onPress={() => router.push("/calendar")}>
-              <Text style={styles.signUpText}>View Calendar Schedule</Text>
+            <TouchableOpacity style={styles.signUpButton}>
+              <Text style={styles.signUpText}>Find Workouts</Text>
             </TouchableOpacity>
           </LinearGradient>
         </View>

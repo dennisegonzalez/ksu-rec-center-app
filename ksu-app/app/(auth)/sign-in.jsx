@@ -54,8 +54,8 @@ const SignIn = () => {
               </View>
 
               {/* Input Fields */}
-              <InputField style="mb-5" placeholder="Email" icon={"mail"} />
-              <InputField style="mb-7" placeholder="Password" icon={"lock"} />
+              <InputField style="pl-4 mb-5 py-2" placeholder="Email" icon={"mail"} />
+              <InputField style="pl-4 mb-7 py-2" placeholder="Password" icon={"lock"} />
 
               {/* Login Button */}
               <Pressable
