@@ -6,7 +6,7 @@ import EquipmentDetails from "../../components/equipment-details-bottomsheet";
 
 
 export default function Map() {
-  const [selectedLocation, setSelectedLocation] = useState('Kennesaw');
+  const [selectedLocation, setSelectedLocation] = useState('Marietta');
   const [selectedEquipment, setSelectedEquipment] = useState(null);
 
   return (
@@ -16,6 +16,15 @@ export default function Map() {
       />
       <View style={styles.tabContainer}>
         <View style={styles.locationTabs}>
+        <TouchableOpacity 
+            style={[
+              styles.locationTab,
+              selectedLocation === 'Marietta' && styles.activeLocationTab
+            ]}
+            onPress={() => setSelectedLocation('Marietta')}
+          >
+            <Text style={styles.locationText}>Marietta</Text>
+          </TouchableOpacity>
           <TouchableOpacity 
             style={[
               styles.locationTab,
@@ -24,15 +33,6 @@ export default function Map() {
             onPress={() => setSelectedLocation('Kennesaw')}
           >
             <Text style={styles.locationText}>Kennesaw</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={[
-              styles.locationTab,
-              selectedLocation === 'Marietta' && styles.activeLocationTab
-            ]}
-            onPress={() => setSelectedLocation('Marietta')}
-          >
-            <Text style={styles.locationText}>Marietta</Text>
           </TouchableOpacity>
         </View>
       </View>      

@@ -14,6 +14,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { Link, useLocalSearchParams, router } from "expo-router";
 import { Ionicons } from '@expo/vector-icons';
+import NavBar from "../../components/NavBar";
 
 const Today = () => {
   const { firstName } = useLocalSearchParams();
@@ -128,20 +129,12 @@ const Today = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={styles.header}>
-          <TouchableOpacity>
-            <Ionicons name="menu" size={24} color="#000" />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>Today</Text>
-          <Link href="/notifications" asChild>
-            <TouchableOpacity>
-              <Ionicons name="notifications" size={24} color="#000" />
-            </TouchableOpacity>
-          </Link>
-        </View>
-      </View>
-
+      <NavBar
+        rightIconComponent={Ionicons}
+        rightIcon="notifications"
+        rightRouteOrAction={() => router.push("/notifications")}
+        title="Today"
+      />
       <ScrollView 
         style={styles.scrollContent}
         contentContainerStyle={styles.scrollContentContainer}

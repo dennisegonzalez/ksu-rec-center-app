@@ -11,11 +11,12 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NavBar from "../../components/NavBar";
 import { AntDesign, Feather, Octicons, Ionicons } from "@expo/vector-icons";
 import CalendarCard from "../../components/CalendarCard";
 import { router } from "expo-router";
+import EventDetailsSheet from "../../components/CalendarEventBottomsheet";
 
 const calendarEvents = [
   {
@@ -48,6 +49,8 @@ const Calendar = () => {
   const [searchText, setSearchText] = useState('');
   const [filteredEvents, setFilteredEvents] = useState(calendarEvents);
   const [weekDays, setWeekDays] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const bottomSheetRef = useRef(null);
   
   useEffect(() => {
     const today = new Date();
@@ -77,6 +80,15 @@ const Calendar = () => {
       event.title.toLowerCase().includes(text.toLowerCase())
     );
     setFilteredEvents(filtered);
+  };
+
+  const handleCardPress = (event) => {
+    setSelectedEvent(event);
+    bottomSheetRef.current?.snapToIndex(0);
+  };
+
+  const handleCloseBottomSheet = () => {
+    setSelectedEvent(null);
   };
 
   return (
@@ -127,10 +139,20 @@ const Calendar = () => {
       <ScrollView>
         <View>
           {filteredEvents.map((card, index) => (
-            <CalendarCard key={index} {...card} />
+            <CalendarCard 
+              key={index} 
+              {...card} 
+              onPress={() => handleCardPress(card)}
+            />
           ))}
         </View>
       </ScrollView>
+
+      <EventDetailsSheet 
+        ref={bottomSheetRef}
+        event={selectedEvent}
+        onClose={handleCloseBottomSheet}
+      />
     </SafeAreaView>
   );
 };
