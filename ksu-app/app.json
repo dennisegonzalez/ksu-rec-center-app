@@ -27,10 +27,13 @@
       [
         "expo-splash-screen",
         {
+          "backgroundColor": "#FAFAFA",
           "image": "./assets/images/finalksulogo.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "dark": {
+            "image": "./assets/images/finalksulogo.png",
+            "backgroundColor": "#000000"
+          },
+          "imageWidth": 200
         }
       ],
       "expo-font",

@@ -18,7 +18,7 @@ const InputField = ({ style, placeholder, icon }) => {
       className={`w-[95%] h-12 rounded-lg px-4 mb-4 ${style}`}
     >
       <Feather name={icon} size={24} color="black" />
-      <TextInput placeholder={placeholder} placeholderTextColor="#C4C4C4" />
+      <TextInput placeholder={placeholder} placeholderTextColor="#C4C4C4" style = {{paddingLeft: 10, width: "90%"}} />
     </View>
   );
 };
